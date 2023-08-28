@@ -1,0 +1,35 @@
+#!/usr/bin/make -f
+
+# export DH_VERBOSE = 1
+
+%:
+	dh $@
+
+execute_before_dh_install:
+	mkdir -p debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)
+	cp -v $(TOPDIR)/lib*so debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)
+	-$(RM) -r $(TOPDIR)/lib*
+
+	mkdir -p debian/tmp/usr/include/$(DEB_HOST_MULTIARCH)
+	cp -v -r $(TOPDIR)/$(BUILDDIR)/$(FULLNAME)/include/* debian/tmp/usr/include/$(DEB_HOST_MULTIARCH)
+	dh_install
+
+override_dh_install:
+	dh_install --sourcedir=debian/tmp
+
+override_dh_link:
+	dh_link --package=libovxlib usr/lib/$(DEB_HOST_MULTIARCH)/libovxlib.so usr/lib/$(DEB_HOST_MULTIARCH)/libovxlib.so.1
+	dh_link --package=libovxlib usr/lib/$(DEB_HOST_MULTIARCH)/libovxlib.so usr/lib/$(DEB_HOST_MULTIARCH)/libovxlib.so.1.1
+	dh_link --package=libovxlib usr/lib/$(DEB_HOST_MULTIARCH)/libovxlib.so usr/lib/$(DEB_HOST_MULTIARCH)/libovxlib.so.1.1.0
+ 
+	dh_link --package=libnnrt usr/lib/$(DEB_HOST_MULTIARCH)/libnnrt.so usr/lib/$(DEB_HOST_MULTIARCH)/libnnrt.so.1
+	dh_link --package=libnnrt usr/lib/$(DEB_HOST_MULTIARCH)/libnnrt.so usr/lib/$(DEB_HOST_MULTIARCH)/libnnrt.so.1.3
+	dh_link --package=libnnrt usr/lib/$(DEB_HOST_MULTIARCH)/libnnrt.so usr/lib/$(DEB_HOST_MULTIARCH)/libnnrt.so.1.3.0
+
+	dh_link --package=libneuralnetworks usr/lib/$(DEB_HOST_MULTIARCH)/libneuralnetworks.so usr/lib/$(DEB_HOST_MULTIARCH)/libneuralnetworks.so.1.3.0
+	dh_link --package=libneuralnetworks usr/lib/$(DEB_HOST_MULTIARCH)/libneuralnetworks.so usr/lib/$(DEB_HOST_MULTIARCH)/libneuralnetworks.so.1.3.0
+	dh_link --package=libneuralnetworks usr/lib/$(DEB_HOST_MULTIARCH)/libneuralnetworks.so usr/lib/$(DEB_HOST_MULTIARCH)/libneuralnetworks.so.1.3.0
+
+override_dh_shlibdeps:
+	dh_shlibdeps -l$(CURDIR)/debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH) 
+
