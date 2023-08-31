@@ -1,1 +1,2 @@
-usr/include/*/OVXLIB/*
+include/OVXLIB usr/include/
+libovxlib.so   usr/lib/${DEB_HOST_MULTIARCH}/
