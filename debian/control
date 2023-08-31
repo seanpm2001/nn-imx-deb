@@ -2,7 +2,7 @@ Source: nn-imx
 Section: devel
 Priority: optional
 Maintainer: Leonardo Held <leonardo.held@toradex.com>
-Build-Depends: debhelper-compat (= 13)
+Build-Depends: debhelper-compat (= 13), imx-gpu-viv-wayland-dev
 Standards-Version: 4.5.1
 Homepage: <https://github.com/nxp-imx/nn-imx/tree/imx_1.3.0>
 Rules-Requires-Root: no
@@ -11,9 +11,7 @@ Package: libnnrt
 Architecture: any
 Multi-Arch: same
 Section: libs
-Depends: ${misc:Depends},
-         ${shlibs:Depends},
-         libovxlib (= ${binary:Version})
+Depends: libovxlib (= ${binary:Version}), ${misc:Depends}, ${shlibs:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Description: runtime files for libnnrt
 
@@ -21,10 +19,10 @@ Package: libnnrt-dev
 Architecture: any
 Multi-Arch: same
 Section: libs
-Depends: ${misc:Depends},
-         ${shlibs:Depends},
+Depends: libnnrt (= ${binary:Version}),
          libovxlib-dev (= ${binary:Version}),
-         libnnrt (= ${binary:Version})
+         ${misc:Depends},
+         ${shlibs:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Description: headers for libnnrt
 
@@ -32,8 +30,7 @@ Package: libneuralnetworks
 Architecture: any
 Multi-Arch: same
 Section: libs
-Depends: ${misc:Depends},
-         ${shlibs:Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Description: runtime files for libneuralnetworks
 
@@ -41,8 +38,7 @@ Package: libovxlib
 Architecture: any
 Multi-Arch: same
 Section: libs
-Depends: ${misc:Depends},
-         ${shlibs:Depends},
+Depends: ${misc:Depends}, ${shlibs:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Description: runtime files for libovxlib
 
@@ -50,8 +46,6 @@ Package: libovxlib-dev
 Architecture: any
 Multi-Arch: same
 Section: libs
-Depends: ${misc:Depends},
-         ${shlibs:Depends},
-         libovxlib (= ${binary:Version})
+Depends: libovxlib (= ${binary:Version}), ${misc:Depends}, ${shlibs:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Description: headers for libovxlib
