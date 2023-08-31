@@ -1,0 +1,1 @@
+libnnrt.so.* usr/lib/${DEB_HOST_MULTIARCH}/
