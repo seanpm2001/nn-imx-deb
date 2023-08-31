@@ -7,7 +7,7 @@ Standards-Version: 4.5.1
 Homepage: <https://github.com/nxp-imx/nn-imx/tree/imx_1.3.0>
 Rules-Requires-Root: no
 
-Package: libnnrt
+Package: libnnrt1
 Architecture: any
 Multi-Arch: same
 Section: libs
@@ -26,7 +26,7 @@ Depends: libnnrt (= ${binary:Version}),
 Pre-Depends: ${misc:Pre-Depends}
 Description: headers for libnnrt
 
-Package: libneuralnetworks
+Package: libneuralnetworks1
 Architecture: any
 Multi-Arch: same
 Section: libs
@@ -34,7 +34,7 @@ Depends: ${misc:Depends}, ${shlibs:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Description: runtime files for libneuralnetworks
 
-Package: libovxlib
+Package: libovxlib1
 Architecture: any
 Multi-Arch: same
 Section: libs
