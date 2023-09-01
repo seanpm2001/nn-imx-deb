@@ -14,7 +14,7 @@ Package: libnnrt1
 Architecture: any
 Multi-Arch: same
 Section: libs
-Depends: libovxlib (= ${binary:Version}), ${misc:Depends}, ${shlibs:Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Description: runtime files for libnnrt
 
@@ -22,8 +22,7 @@ Package: libnnrt-dev
 Architecture: any
 Multi-Arch: same
 Section: libs
-Depends: libnnrt (= ${binary:Version}),
-         libovxlib-dev (= ${binary:Version}),
+Depends: libnnrt1 (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
 Pre-Depends: ${misc:Pre-Depends}
@@ -49,6 +48,6 @@ Package: libovxlib-dev
 Architecture: any
 Multi-Arch: same
 Section: libs
-Depends: libovxlib (= ${binary:Version}), ${misc:Depends}, ${shlibs:Depends}
+Depends: libovxlib1 (= ${binary:Version}), ${misc:Depends}, ${shlibs:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Description: headers for libovxlib
