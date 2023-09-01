@@ -1,7 +1,10 @@
 Source: nn-imx
 Section: devel
 Priority: optional
-Maintainer: Leonardo Held <leonardo.held@toradex.com>
+Maintainer: Toradex Packaging Team <debian-pkg-team@toradex.com>
+Uploaders: Abdur Rehman <abdur.rehman@toradex.com>,
+           Carlos Henrique Lima Melara <carlos.melara@toradex.com>,
+           Leonardo Held <leonardo.held@toradex.com>
 Build-Depends: debhelper-compat (= 13), imx-gpu-viv-wayland-dev
 Standards-Version: 4.5.1
 Homepage: https://github.com/nxp-imx/nn-imx
