@@ -17,6 +17,9 @@ Section: libs
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Description: runtime files for libnnrt
+ Neural Networks i.MX.
+ .
+ Runtime files for libnnrt.
 
 Package: libnnrt-dev
 Architecture: any
@@ -27,6 +30,9 @@ Depends: libnnrt1 (= ${binary:Version}),
          ${shlibs:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Description: headers for libnnrt
+ Neural Networks i.MX.
+ .
+ Header files for libnnrt.
 
 Package: libneuralnetworks1
 Architecture: any
@@ -35,6 +41,9 @@ Section: libs
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Description: runtime files for libneuralnetworks
+ Neural Networks i.MX.
+ .
+ Runtime files for libneuralnetworks.
 
 Package: libovxlib1
 Architecture: any
@@ -43,6 +52,9 @@ Section: libs
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Description: runtime files for libovxlib
+ Neural Networks i.MX.
+ .
+ Runtime files for libovxlib.
 
 Package: libovxlib-dev
 Architecture: any
@@ -51,3 +63,6 @@ Section: libs
 Depends: libovxlib1 (= ${binary:Version}), ${misc:Depends}, ${shlibs:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Description: headers for libovxlib
+ Neural Networks i.MX.
+ .
+ Header files for libovxlib.
