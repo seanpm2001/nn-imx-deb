@@ -8,62 +8,58 @@ Copyright: 2007-2010 Baptiste Lepilleur and The JsonCpp Authors
            2017 The Android Open Source Project
            2019-2021 Vivante Corporation
            2020 Vivante Corporation
-License:   Expat
+License: Expat
 
-Files:     Android.mk
-           common.node
-           common.target
+Files: Android.mk
+       common.node
+       common.target
 Copyright: 2005-2019 Vivante Corp.
-License:   Vivante-Proprietary-Code
+License: Vivante-Proprietary-Code
  The material in this file is confidential and contains trade secrets
  of Vivante Corporation. This is proprietary information owned by
  Vivante Corporation. No part of this work may be disclosed,
  reproduced, copied, transmitted, or used in any way for any purpose,
  without the express written permission of Vivante Corporation.
 
-Files:     ovxlib/third-party/gperftools/*
+Files: ovxlib/third-party/gperftools/*
 Copyright: 1998-2013 Google Inc.
            2014      Linaro
            2014-2016 gperftools Contributors
-License:   BSD-3-Clause
+License: BSD-3-Clause
 
-Files:     ovxlib/third-party/gperftools/src/third_party/valgrind.h
+Files: ovxlib/third-party/gperftools/src/third_party/valgrind.h
 Copyright: 2009-2010 Andrea Leofreddi <a.leofreddi@itcharm.com>
-License:   bzip2-1.0.6
+License: bzip2-1.0.6
 
-Files:     ovxlib/third-party/gperftools/src/pprof
+Files: ovxlib/third-party/gperftools/src/pprof
 Copyright: 2000-2008 Julian Seward
-License:   BSD-2-Clause
+License: BSD-2-Clause
 
-Files:     include/OVXLIB/jconfig.h
-           include/OVXLIB/jmorecfg.h
-           include/OVXLIB/jpeglib.h
-           ovxlib/third-party/jpeg-9b/*
+Files: include/OVXLIB/jconfig.h
+       include/OVXLIB/jmorecfg.h
+       include/OVXLIB/jpeglib.h
+       ovxlib/third-party/jpeg-9b/*
 Copyright: 1991-2016 Thomas G. Lane
            1991-2016 Guido Vollbeding
-License:   IJG-short
+License: IJG-short
 
-Copyright: 2017-2019 The Android Open Source Project
-           2019-2021 Vivante Corporation
-License:   Apache-2.0 and Expat
-
-Files:     nn_runtime/nnapi_delegate/*
-           nn_runtime/nnrt/*
+Files: nn_runtime/nnapi_delegate/*
+       nn_runtime/nnrt/*
 Copyright: 2017-2019 The Android Open Source Project
            2007-2010 Baptiste Lepilleur and The JsonCpp Authors
            2012-2017 Christian Rau <rauy@users.sourceforge.net>
            2019-2021 Vivante Corporation
-License:   Apache-2.0 and Expat
+License: Apache-2.0 and Expat
 
-Files:     include/nnrt/boost/*
-           nn_runtime/nnrt/boost/*
+Files: include/nnrt/boost/*
+       nn_runtime/nnrt/boost/*
 Copyright: 2002 Housemarque Oy
            2002 Paul Mensonides
            2016-2017 Edward Diener
            2018 Mike Dev
 License: BSL-1.0
 
-License:   Expat
+License: Expat
  Permission is hereby granted, free of charge, to any person obtaining a
  copy of this software and associated documentation files (the "Software"),
  to deal in the Software without restriction, including without limitation
@@ -140,9 +136,6 @@ License: BSD-3-Clause
  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- .
- On Debian systems, the complete text of the BSD 3-clause "New" or "Revised"
- License can be found in `/usr/share/common-licenses/BSD'.
 
 License: BSD-2-Clause
  Redistribution and use in source and binary forms, with or without
