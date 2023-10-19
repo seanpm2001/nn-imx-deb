@@ -1,0 +1,53 @@
+libneuralnetworks.so.1 libneuralnetworks1
+ ANeuralNetworksBurst_create@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksBurst_free@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksCompilation_create@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksCompilation_createForDevices@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksCompilation_finish@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksCompilation_free@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksCompilation_setCaching@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksCompilation_setPreference@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksDevice_getFeatureLevel@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksDevice_getName@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksDevice_getType@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksDevice_getVersion@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksEvent_free@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksEvent_wait@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksExecution_burstCompute@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksExecution_compute@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksExecution_create@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksExecution_free@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksExecution_getDuration@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksExecution_getOutputOperandDimensions@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksExecution_getOutputOperandRank@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksExecution_setInput@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksExecution_setInputFromMemory@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksExecution_setMeasureTiming@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksExecution_setOutput@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksExecution_setOutputFromMemory@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksExecution_startCompute@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksMemory_createFromFd@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksMemory_free@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksModel_addOperand@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksModel_addOperation@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksModel_create@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksModel_finish@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksModel_free@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksModel_getSupportedOperationsForDevices@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksModel_identifyInputsAndOutputs@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksModel_relaxComputationFloat32toFloat16@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksModel_setOperandSymmPerChannelQuantParams@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksModel_setOperandValue@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworksModel_setOperandValueFromMemory@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworks_getDevice@Base 1.3.0+git20220724.1b54f5a
+ ANeuralNetworks_getDeviceCount@Base 1.3.0+git20220724.1b54f5a
+ (c++)"std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::_M_release()@Base" 1.3.0+git20220724.1b54f5a
+ (c++)"std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::_M_release_last_use_cold()@Base" 1.3.0+git20220724.1b54f5a
+ (c++)"std::vector<float, std::allocator<float> >::_M_fill_insert(__gnu_cxx::__normal_iterator<float*, std::vector<float, std::allocator<float> > >, unsigned long, float const&)@Base" 1.3.0+git20220724.1b54f5a
+ (c++)"std::vector<int, std::allocator<int> >::_M_fill_insert(__gnu_cxx::__normal_iterator<int*, std::vector<int, std::allocator<int> > >, unsigned long, int const&)@Base" 1.3.0+git20220724.1b54f5a
+ (c++)"typeinfo for std::_Mutex_base<(__gnu_cxx::_Lock_policy)2>@Base" 1.3.0+git20220724.1b54f5a
+ (c++)"typeinfo for std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>@Base" 1.3.0+git20220724.1b54f5a
+ (c++)"typeinfo name for std::_Mutex_base<(__gnu_cxx::_Lock_policy)2>@Base" 1.3.0+git20220724.1b54f5a
+ (c++)"typeinfo name for std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>@Base" 1.3.0+git20220724.1b54f5a
+ (c++)"typeinfo name for std::_Sp_make_shared_tag@Base" 1.3.0+git20220724.1b54f5a
+ (c++)"std::_Sp_make_shared_tag::_S_ti()::__tag@Base" 1.3.0+git20220724.1b54f5a
