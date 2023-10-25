@@ -1,5 +1,36 @@
-nn-imx (1.3.0-1) UNRELEASED; urgency=low
+nn-imx (1.3.0+git20220724.1b54f5a-0+toradex1) bookworm; urgency=medium
 
   * Initial release.
+  * debian/control:
+      - Add imx-gpu-viv-wayland-dev as build dependency.
+      - Add extended description to packages stanza.
+      - Bump stds-version to 4.6.2.
+      - Fix run-time dependencies.
+      - Rename run-time lib packages to append the major ABI version.
+      - Update homepage field.
+      - Update Maintainers field and add a Uploaders one.
+  * debian/copyright: full update.
+  * debian/gbp.conf: add default bahaviour.
+  * debian/*.symbols: add symbols for libnnrt, libovxlib and
+    libneuralnetworks.
+  * debian/libnnrt1.install: rename from libnnrt.install and fix paths.
+  * debian/libovxlib1.install: rename from libovxlib.install and fix paths.
+  * debian/libneuralnetworks1.install: rename from libneuralnetworks.install.
+  * debian/libovxlib-dev.install: fix install path and add link to soname.
+  * debian/libnnrt-dev.install: fix install path and add link to soname.
+  * debian/debhelper-build-stamp: remove.
+  * debian/nn-imx.substvars: remove.
+  * debian/patches: remove since we don't apply any patches.
+  * debian/README.Debian: remove.
+  * debian/rules:
+      - Disable error on warning for use-after-free.
+      - Export AQROOT so the nn-imx makefile can work correctly.
+      - Install NOTICE file in all packages.
+      - Simplify debian/rules.
+  * debian/source/: remove unused files.
+  * debian/tests/control: remove.
+  * debian/toradex-ci.yml: add CI pipeline.
+  * debian/upstream/metadata: remove.
+  * debian/watch: add watch to search for lf-<version> tags.
 
- -- Leonardo Held <leonardo.held@toradex.com>  Thu, 16 Mar 2023 01:05:25 +0000
+ -- Carlos Henrique Lima Melara <carlos.melara@toradex.com>  Wed, 25 Oct 2023 17:16:38 -0300
