@@ -30,6 +30,7 @@ libovxlib.so.1.1.0 libovxlib1
  vsi_nn_CopyDataToTensor@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_CopyRawDataToTensor@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_CopyTensorToBuffer@Base 1.3.0+git20220724.1b54f5a
+ vsi_nn_CopyTensorViaGraphs@Base 1.3.0+git20221206.54889a6
  vsi_nn_CreateContext@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_CreateGraph@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_CreateNode@Base 1.3.0+git20220724.1b54f5a
@@ -53,6 +54,7 @@ libovxlib.so.1.1.0 libovxlib1
  vsi_nn_DumpGraphNodeOutputs@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_DumpGraphNodeOutputsEx@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_DumpGraphToJson@Base 1.3.0+git20220724.1b54f5a
+ vsi_nn_ExecuteGraphLoop@Base 1.3.0+git20221206.54889a6
  vsi_nn_FasterRCNN_PostProcess@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_Float32ToDtype@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_FlushHandle@Base 1.3.0+git20220724.1b54f5a
