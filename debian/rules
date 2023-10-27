@@ -2,6 +2,9 @@
 
 # export DH_VERBOSE = 1
 export AQROOT = $(CURDIR)
+# with GCC 12, we get an use after free warning which causes a compilation
+# using the default flags. So we need to turn off the error on warning
+export DEB_CFLAGS_MAINT_APPEND = -Wno-error=use-after-free
 
 %:
 	dh $@
