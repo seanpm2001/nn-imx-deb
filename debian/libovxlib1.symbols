@@ -79,6 +79,7 @@ libovxlib.so.1.1.0 libovxlib1
  vsi_nn_GetStrideSizeBySize@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_GetTensor@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_GetTensorHandle@Base 1.3.0+git20220724.1b54f5a
+ vsi_nn_GetTensorIsScalar@Base 1.3.0+git20230215.33ff4ea
  vsi_nn_GetTensorSize@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_GetTensors@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_GetTotalBytesBySize@Base 1.3.0+git20220724.1b54f5a
@@ -91,6 +92,7 @@ libovxlib.so.1.1.0 libovxlib1
  vsi_nn_HasRNN@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_InitTensorsId@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_IntegerConvert@Base 1.3.0+git20220724.1b54f5a
+ vsi_nn_InvalidateHandle@Base 1.3.0+git20230215.33ff4ea
  vsi_nn_InvertPermuteShape@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_InvertShape@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_IsBufferAligned@Base 1.3.0+git20220724.1b54f5a
@@ -170,11 +172,13 @@ libovxlib.so.1.1.0 libovxlib1
  vsi_nn_SetGraphPriority@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_SetGraphVersion@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_SetTensorAttr@Base 1.3.0+git20220724.1b54f5a
+ vsi_nn_SetTensorIsScalar@Base 1.3.0+git20230215.33ff4ea
  vsi_nn_SetupGraph@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_SetupRNNConnections@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_ShapeProduct@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_ShapeToString@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_SqueezeShape@Base 1.3.0+git20220724.1b54f5a
+ vsi_nn_SwapHandle@Base 1.3.0+git20230215.33ff4ea
  vsi_nn_SwapTensorHandle@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_Transpose@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_TransposeTensor@Base 1.3.0+git20220724.1b54f5a
