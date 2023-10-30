@@ -1,4 +1,5 @@
 libovxlib.so.1.1.0 libovxlib1
+* Build-Depends-Package: libovxlib-dev
  vsi_nn_Access@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_AddBinaryGraphInputsWithCropParam@Base 1.3.0+git20220724.1b54f5a
  vsi_nn_AddExternalNode@Base 1.3.0+git20220724.1b54f5a
