@@ -51,6 +51,7 @@ vsi_nn_kernel_node_t vsi_nn_sp_sum_node
     vx_tensor inputs_tensor[1] = {NULL};
     vx_tensor outputs_tensor[1] = {NULL};
     vx_node node = NULL;
+    int32_t max_vector_depth = graph->ctx->config.sp_vector_depth;
 
     vsi_nn_spinst_t *spinst = NULL;
     vsi_nn_spinst_inst_param sp_insts_param[1];
@@ -63,7 +64,7 @@ vsi_nn_kernel_node_t vsi_nn_sp_sum_node
     vsi_nn_get_tensor_clamp_min_max(input, &clamp_min, &clamp_max);
 
     memset(sp_insts_param, 0, sizeof(vsi_nn_spinst_inst_param) * spInstsNum);
-    memset(&attr, 0, sizeof(vsi_nn_spinst_attr_t));
+    vsi_nn_init_spinst_attr(&attr);
 
     /* loop inst0: acc = clamp(in * r3, r6, r7) */
     status = vsi_nn_sp_mul_clamp(&sp_insts_param[0], VSI_NN_SP_SRIN, VSI_NN_SP_SR3, VSI_NN_SP_ACC);
@@ -73,12 +74,18 @@ vsi_nn_kernel_node_t vsi_nn_sp_sum_node
     {
         attr.input_tile_mapping = VSI_NN_SP_ATTR_INPUT_TILE_MAPPING_YZMERGE;
         attr.output_collapse_x = VSI_NN_SP_ATTR_OUTPUT_COLLAPSE_ENABLED;
+
+        attr.split_axis = VSI_SP_ATTR_SPLIT_ON_AXIS_YZ;
+        attr.split_max_vector_depth = max_vector_depth;
     }
     else
     {
         attr.input_tile_mapping = VSI_NN_SP_ATTR_INPUT_TILE_MAPPING_XYMERGE;
         attr.output_collapse_x = VSI_NN_SP_ATTR_OUTPUT_COLLAPSE_ENABLED;
         attr.output_collapse_y = VSI_NN_SP_ATTR_OUTPUT_COLLAPSE_ENABLED;
+
+        attr.split_axis = VSI_SP_ATTR_SPLIT_ON_AXIS_Z;
+        attr.split_max_vector_depth = max_vector_depth;
     }
     attr.input_setup = VSI_NN_SP_INPUT_SETUP_SINGLE_INPUT;
 
@@ -139,6 +146,7 @@ vsi_nn_kernel_node_t vsi_nn_sp_v11_times_scale_node
     vx_tensor inputs_tensor[1] = {NULL};
     vx_tensor outputs_tensor[1] = {NULL};
     vx_node node = NULL;
+    int32_t max_vector_depth = graph->ctx->config.sp_vector_depth;
 
     vsi_nn_spinst_t *spinst = NULL;
     vsi_nn_spinst_inst_param sp_insts_param[1];
@@ -147,7 +155,7 @@ vsi_nn_kernel_node_t vsi_nn_sp_v11_times_scale_node
     vsi_status status = VSI_FAILURE;
 
     memset(sp_insts_param, 0, sizeof(vsi_nn_spinst_inst_param) * spInstsNum);
-    memset(&attr, 0, sizeof(vsi_nn_spinst_attr_t));
+    vsi_nn_init_spinst_attr(&attr);
 
     /* loop inst0: out = v11 * r3 */
     status = vsi_nn_sp_mul(&sp_insts_param[0], VSI_NN_SP_VR11, VSI_NN_SP_SR3, VSI_NN_SP_SROUT);
@@ -156,10 +164,16 @@ vsi_nn_kernel_node_t vsi_nn_sp_v11_times_scale_node
     if (axis_num == 1)
     {
         attr.input_tile_mapping = VSI_NN_SP_ATTR_INPUT_TILE_MAPPING_YZMERGE;
+
+        attr.split_axis = VSI_SP_ATTR_SPLIT_ON_AXIS_YZ;
+        attr.split_max_vector_depth = max_vector_depth;
     }
     else
     {
         attr.input_tile_mapping = VSI_NN_SP_ATTR_INPUT_TILE_MAPPING_XYMERGE;
+
+        attr.split_axis = VSI_SP_ATTR_SPLIT_ON_AXIS_Z;
+        attr.split_max_vector_depth = max_vector_depth;
     }
     attr.input_setup = VSI_NN_SP_INPUT_SETUP_V11;
 

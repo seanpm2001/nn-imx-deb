@@ -92,6 +92,8 @@ vsi_nn_kernel_node_t vsi_nn_sp_a_minus_v11_times_v12_node
     vx_tensor inputs_tensor[3] = {NULL};
     vx_tensor outputs_tensor[1] = {NULL};
     vx_node node = NULL;
+    int32_t max_vector_depth = graph->ctx->config.sp_vector_depth /
+        graph->ctx->config.sp_exec_count;
 
     vsi_nn_spinst_t *spinst = NULL;
     vsi_nn_spinst_inst_param sp_insts_param[1];
@@ -100,7 +102,7 @@ vsi_nn_kernel_node_t vsi_nn_sp_a_minus_v11_times_v12_node
     vsi_status status = VSI_FAILURE;
 
     memset(sp_insts_param, 0, sizeof(vsi_nn_spinst_inst_param) * spInstsNum);
-    memset(&attr, 0, sizeof(vsi_nn_spinst_attr_t));
+    vsi_nn_init_spinst_attr(&attr);
 
     /* loop inst0: r1 = r1 * v12 || out = in - v11 */
     status  = vsi_nn_sp_mul(&sp_insts_param[0], VSI_NN_SP_SR1, VSI_NN_SP_VR12, VSI_NN_SP_SR1);
@@ -117,6 +119,9 @@ vsi_nn_kernel_node_t vsi_nn_sp_a_minus_v11_times_v12_node
     attr.flush_cycle_num = 3;
     attr.v11_push_pop_config = VSI_NN_SP_PUSH_POP_EVERY_ROW;
     attr.v12_push_pop_config = VSI_NN_SP_PUSH_POP_EVERY_ROW;
+
+    attr.split_axis = VSI_SP_ATTR_SPLIT_ON_AXIS_Z;
+    attr.split_max_vector_depth = max_vector_depth;
 
     spinst = vsi_nn_create_spinst(graph);
     CHECK_PTR_FAIL_GOTO( spinst, "Create spInst fail.", final );

@@ -57,6 +57,7 @@ static vsi_status op_compute
     vsi_nn_kernel_param_add_int32( param, "rounding_policy", self->vx_param.rounding_policy );
     vsi_nn_kernel_param_add_int32( param,
             "down_scale_size_rounding", self->vx_param.down_scale_size_rounding );
+    vsi_nn_kernel_param_add_int32( param, "pad_mode", vsi_nn_get_vx_pad_mode( self->nn_param.conv2d.pad_mode ) );
     if (self->nn_param.conv2d.multiplier != 0) {
         vsi_nn_kernel_param_add_int32( param, "multiplier",
             self->nn_param.conv2d.multiplier );
@@ -386,6 +387,41 @@ static vsi_bool op_check
             IO_TYPE(D_I4|Q_SYM,  D_U8|Q_ASYM,    D_I32|Q_ASYM,    D_U4|Q_ASYM)
             IO_TYPE(D_I4|Q_SYM,  D_I8|Q_SYM_PC,  D_I32|Q_SYM_PC,  D_I4|Q_SYM)
             IO_TYPE(D_I4|Q_SYM,  D_I8|Q_SYM_PC,  D_I32|Q_SYM_PC,  D_U4|Q_ASYM)
+
+            IO_TYPE(D_U4|Q_ASYM, D_U8|Q_ASYM,    D_I32|Q_ASYM,    D_I16|Q_ASYM)
+            IO_TYPE(D_U4|Q_ASYM, D_U8|Q_ASYM,    D_I32|Q_ASYM,    D_I16|Q_SYM)
+            IO_TYPE(D_U4|Q_ASYM, D_U8|Q_ASYM,    D_I32|Q_ASYM,    D_I16|Q_DFP)
+            IO_TYPE(D_U4|Q_ASYM, D_I8|Q_ASYM,    D_I32|Q_ASYM,    D_I16|Q_ASYM)
+            IO_TYPE(D_U4|Q_ASYM, D_I8|Q_ASYM,    D_I32|Q_ASYM,    D_I16|Q_SYM)
+            IO_TYPE(D_U4|Q_ASYM, D_I8|Q_ASYM,    D_I32|Q_ASYM,    D_I16|Q_DFP)
+            IO_TYPE(D_I4|Q_ASYM, D_I8|Q_ASYM,    D_I32|Q_ASYM,    D_I16|Q_ASYM)
+            IO_TYPE(D_I4|Q_ASYM, D_I8|Q_ASYM,    D_I32|Q_ASYM,    D_I16|Q_SYM)
+            IO_TYPE(D_I4|Q_ASYM, D_I8|Q_ASYM,    D_I32|Q_ASYM,    D_I16|Q_DFP)
+            IO_TYPE(D_I4|Q_ASYM, D_U8|Q_ASYM,    D_I32|Q_ASYM,    D_I16|Q_ASYM)
+            IO_TYPE(D_I4|Q_ASYM, D_U8|Q_ASYM,    D_I32|Q_ASYM,    D_I16|Q_SYM)
+            IO_TYPE(D_I4|Q_ASYM, D_U8|Q_ASYM,    D_I32|Q_ASYM,    D_I16|Q_DFP)
+            IO_TYPE(D_I4|Q_ASYM, D_I8|Q_SYM_PC,  D_I32|Q_SYM_PC,  D_I16|Q_ASYM)
+            IO_TYPE(D_I4|Q_ASYM, D_I8|Q_SYM_PC,  D_I32|Q_SYM_PC,  D_I16|Q_SYM)
+            IO_TYPE(D_I4|Q_ASYM, D_I8|Q_SYM_PC,  D_I32|Q_SYM_PC,  D_I16|Q_DFP)
+            IO_TYPE(D_I4|Q_DFP,  D_I8|Q_DFP,     D_I32|Q_DFP,     D_I16|Q_DFP)
+            IO_TYPE(D_U4|Q_ASYM, D_U8|Q_ASYM,    D_I32|Q_SYM,     D_I16|Q_ASYM)
+            IO_TYPE(D_U4|Q_ASYM, D_U8|Q_ASYM,    D_I32|Q_SYM,     D_I16|Q_SYM)
+            IO_TYPE(D_U4|Q_ASYM, D_U8|Q_ASYM,    D_I32|Q_SYM,     D_I16|Q_DFP)
+            IO_TYPE(D_U4|Q_ASYM, D_I8|Q_SYM,     D_I32|Q_SYM,     D_I16|Q_ASYM)
+            IO_TYPE(D_U4|Q_ASYM, D_I8|Q_SYM,     D_I32|Q_SYM,     D_I16|Q_SYM)
+            IO_TYPE(D_U4|Q_ASYM, D_I8|Q_SYM,     D_I32|Q_SYM,     D_I16|Q_DFP)
+            IO_TYPE(D_U4|Q_ASYM, D_I8|Q_SYM_PC,  D_I32|Q_SYM,     D_I16|Q_ASYM)
+            IO_TYPE(D_U4|Q_ASYM, D_I8|Q_SYM_PC,  D_I32|Q_SYM,     D_I16|Q_SYM)
+            IO_TYPE(D_U4|Q_ASYM, D_I8|Q_SYM_PC,  D_I32|Q_SYM,     D_I16|Q_DFP)
+            IO_TYPE(D_I4|Q_SYM,  D_I8|Q_SYM,     D_I32|Q_SYM,     D_I16|Q_ASYM)
+            IO_TYPE(D_I4|Q_SYM,  D_I8|Q_SYM,     D_I32|Q_SYM,     D_I16|Q_SYM)
+            IO_TYPE(D_I4|Q_SYM,  D_I8|Q_SYM,     D_I32|Q_SYM,     D_I16|Q_DFP)
+            IO_TYPE(D_I4|Q_SYM,  D_U8|Q_ASYM,    D_I32|Q_ASYM,    D_I16|Q_ASYM)
+            IO_TYPE(D_I4|Q_SYM,  D_U8|Q_ASYM,    D_I32|Q_ASYM,    D_I16|Q_SYM)
+            IO_TYPE(D_I4|Q_SYM,  D_U8|Q_ASYM,    D_I32|Q_ASYM,    D_I16|Q_DFP)
+            IO_TYPE(D_I4|Q_SYM,  D_I8|Q_SYM_PC,  D_I32|Q_SYM_PC,  D_I16|Q_ASYM)
+            IO_TYPE(D_I4|Q_SYM,  D_I8|Q_SYM_PC,  D_I32|Q_SYM_PC,  D_I16|Q_SYM)
+            IO_TYPE(D_I4|Q_SYM,  D_I8|Q_SYM_PC,  D_I32|Q_SYM_PC,  D_I16|Q_DFP)
 
         END_IO_TYPE_DECL(CONV2D)
         ret = VALIDATE_OP_IO_TYPES(CONV2D, self, inputs, self->input.num, outputs, self->output.num);
