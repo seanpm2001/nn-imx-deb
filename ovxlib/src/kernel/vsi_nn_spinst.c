@@ -30,6 +30,7 @@
 #include "vsi_nn_error.h"
 #include "utils/vsi_nn_math.h"
 #include "kernel/vsi_nn_spinst.h"
+#include "kernel/vsi_nn_sp_unit_operation.h"
 
 #if VX_STREAM_PROCESSOR_SUPPORT
 
@@ -175,6 +176,9 @@ vsi_status vsi_nn_set_spinst_attr
         attrs.sum_engine_num_ch_minus_one);
     status |= vxSetAttributeToSPINST(spinst->sp, VSI_NN_SP_ATTRIBUTE_SUM_ENGINE_2D_ACCUM_STORAGE,
         attrs.sum_engine_2d_accum_storeage);
+
+    status |= vxSetAttributeToSPINST(spinst->sp, VSI_NN_SP_ATTRIBUTE_SUM_ENGINE_OP_SELECT,
+        attrs.sum_engine_op_select);
     status |= vxSetAttributeToSPINST(spinst->sp, VSI_NN_SP_ATTRIBUTE_NUM_OF_ELEMENTS_PER_LOOP_PER_INPUT,
         attrs.num_of_elements_per_loop_per_input);
 
@@ -216,6 +220,22 @@ vsi_status vsi_nn_set_spinst_attr
         attrs.split_max_vector_depth);
     status |= vxSetAttributeToSPINST(spinst->sp, VSI_NN_SP_ATTRIBUTE_TILEX_EQUAL_IMGX,
         attrs.split_tilex_equal_imgx);
+
+    status |= vxSetAttributeToSPINST(spinst->sp, VSI_NN_SP_ATTRIBUTE_NOT_MERGE_CONVSP,
+        attrs.not_merge_with_conv2d);
+    status |= vxSetAttributeToSPINST(spinst->sp, VSI_NN_SP_ATTRIBUTE_UPDATE_CONST0_TO_PCQ_COEF_TENSOR,
+        attrs.update_const0_to_pcq_coef_tensor);
+    status |= vxSetAttributeToSPINST(spinst->sp, VSI_NN_SP_ATTRIBUTE_RESHAPE_ARRAY,
+        attrs.reshape_array);
+
+    status |= vxSetAttributeToSPINST(spinst->sp, VSI_NN_SP_ATTRIBUTE_NUM_OF_V11_RD_IN_FLUSH_CYCLE,
+        attrs.num_of_v11_rd_in_flush_cycle);
+    status |= vxSetAttributeToSPINST(spinst->sp, VSI_NN_SP_ATTRIBUTE_NUM_OF_V12_RD_IN_FLUSH_CYCLE,
+        attrs.num_of_v12_rd_in_flush_cycle);
+    status |= vxSetAttributeToSPINST(spinst->sp, VSI_NN_SP_ATTRIBUTE_NUM_OF_V11_WR_IN_FLUSH_CYCLE,
+        attrs.num_of_v11_wr_in_flush_cycle);
+    status |= vxSetAttributeToSPINST(spinst->sp, VSI_NN_SP_ATTRIBUTE_NUM_OF_V12_WR_IN_FLUSH_CYCLE,
+        attrs.num_of_v12_wr_in_flush_cycle);
 
     return status;
 } /* vsi_nn_set_spinst_attr() */
@@ -271,6 +291,50 @@ void vsi_nn_init_spinst_attr
 
     /*default per loop to process one input or output pixel*/
     attrs->num_of_elements_per_loop_per_input = 1;
+    attrs->accelerator_input_select = VSI_NN_SP_ACCELERATOR_IN_FROM_ACCEL;
+    attrs->split_axis = VSI_SP_ATTR_SPLIT_ON_AXIS_XYZ;
 } /* vsi_nn_init_spinst_attr() */
+
+void vsi_nn_release_vxspinst
+    (
+    vsi_nn_spinst_t * spinst
+    )
+{
+    if( NULL != spinst && NULL != spinst->sp )
+    {
+        vxReleaseSPINST( &spinst->sp );
+        spinst->sp = NULL;
+    }
+} /* vsi_nn_release_vxspinst() */
+
+vsi_status vsi_nn_get_constant_from_spinst
+    (
+    vsi_nn_spinst_t * spinst,
+    float constant[5]
+    )
+{
+    vsi_status status;
+    uint32_t constant_data[5] = {0};
+
+    status = VSI_SUCCESS;
+    if( NULL == spinst )
+    {
+        return VSI_FAILURE;
+    }
+
+    status  = vxGetAttributeToSPINST(spinst->sp, VSI_NN_SP_ATTRIBUTE_CONST0, &constant_data[0]);
+    status |= vxGetAttributeToSPINST(spinst->sp, VSI_NN_SP_ATTRIBUTE_CONST1, &constant_data[1]);
+    status |= vxGetAttributeToSPINST(spinst->sp, VSI_NN_SP_ATTRIBUTE_CONST2, &constant_data[2]);
+    status |= vxGetAttributeToSPINST(spinst->sp, VSI_NN_SP_ATTRIBUTE_CONST3, &constant_data[3]);
+    status |= vxGetAttributeToSPINST(spinst->sp, VSI_NN_SP_ATTRIBUTE_CONST4, &constant_data[4]);
+
+    constant[0] = *(float *)&constant_data[0];
+    constant[1] = *(float *)&constant_data[1];
+    constant[2] = *(float *)&constant_data[2];
+    constant[3] = *(float *)&constant_data[3];
+    constant[4] = *(float *)&constant_data[4];
+
+    return status;
+}
 
 #endif

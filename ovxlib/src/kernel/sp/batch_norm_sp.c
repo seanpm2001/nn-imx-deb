@@ -29,6 +29,8 @@
 #include "vsi_nn_prv.h"
 #include "vsi_nn_tensor_util.h"
 #include "vsi_nn_error.h"
+#include "vsi_nn_tensor_util_prv.h"
+#include "vsi_nn_kernel_prv.h"
 #include "kernel/vsi_nn_kernel.h"
 #include "kernel/vsi_nn_sp_unit_operation.h"
 #include "kernel/vsi_nn_sp_lut.h"
@@ -135,7 +137,9 @@ vsi_nn_kernel_node_t vsi_nn_sp_bn_mov_weight_bias_node
         vsi_nn_graph_t              * graph,
         vsi_nn_tensor_t             * weight,
         vsi_nn_tensor_t             * bias,
-        vsi_nn_tensor_t             * dummy_output
+        vsi_nn_tensor_t             * dummy_output0,
+        vsi_nn_tensor_t             * dummy_output1,
+        char                        * kernel_name
     )
 {
     const int32_t spLoopInstsNum = 2;
@@ -182,6 +186,10 @@ vsi_nn_kernel_node_t vsi_nn_sp_bn_mov_weight_bias_node
     attr.split_axis = VSI_SP_ATTR_SPLIT_ON_AXIS_Z;
     attr.split_max_vector_depth = max_vector_depth;
 
+    attr.input0_reshape = VX_SP_ATTRIBUTE_RESHAPE_CHW2HWC;
+    attr.input1_reshape = VX_SP_ATTRIBUTE_RESHAPE_CHW2HWC;
+    attr.output_reshape = VX_SP_ATTRIBUTE_RESHAPE_CHW2HWC;
+
     spinst = vsi_nn_create_spinst(graph);
     CHECK_PTR_FAIL_GOTO( spinst, "Create spInst fail.", final );
     status  = vsi_nn_add_spinst_insts(spinst, sp_insts_param, spInstsNum);
@@ -190,7 +198,8 @@ vsi_nn_kernel_node_t vsi_nn_sp_bn_mov_weight_bias_node
 
     inputs_tensor[0] = weight->t;
     inputs_tensor[1] = bias->t;
-    outputs_tensor[0] = dummy_output->t;
+    outputs_tensor[0] = dummy_output0->t;
+    outputs_tensor[1] = dummy_output1->t;
 
     node = vxStreamProcessorNode(
         graph->g,
@@ -201,6 +210,8 @@ vsi_nn_kernel_node_t vsi_nn_sp_bn_mov_weight_bias_node
         spinst->sp,
         NULL);
 
+    status = vsi_nn_set_sp_kernel_name(node, kernel_name);
+    CHECK_STATUS_FAIL_GOTO(status, final );
 final:
     if (spinst)
     {
@@ -214,8 +225,10 @@ vsi_nn_kernel_node_t vsi_nn_sp_bn_in_times_v11_plus_v12_node
     (
         vsi_nn_graph_t              * graph,
         vsi_nn_tensor_t             * input,
-        vsi_nn_tensor_t             * dummy_tensor,
-        vsi_nn_tensor_t             * output
+        vsi_nn_tensor_t             * dummy_tensor0,
+        vsi_nn_tensor_t             * dummy_tensor1,
+        vsi_nn_tensor_t             * output,
+        char                        * kernel_name
     )
 {
     const int32_t spLoopInstsNum = 1;
@@ -254,6 +267,9 @@ vsi_nn_kernel_node_t vsi_nn_sp_bn_in_times_v11_plus_v12_node
     attr.v11_push_pop_config = VSI_NN_SP_PUSH_POP_EVERY_ROW;
     attr.v12_push_pop_config = VSI_NN_SP_PUSH_POP_EVERY_ROW;
 
+    attr.num_of_v11_rd_in_flush_cycle = 0;
+    attr.num_of_v12_rd_in_flush_cycle = 3;
+
     attr.split_axis = VSI_SP_ATTR_SPLIT_ON_AXIS_Z;
     attr.split_max_vector_depth = max_vector_depth;
 
@@ -264,7 +280,8 @@ vsi_nn_kernel_node_t vsi_nn_sp_bn_in_times_v11_plus_v12_node
     CHECK_STATUS_FAIL_GOTO(status, final );
 
     inputs_tensor[0] = input->t;
-    inputs_tensor[1] = dummy_tensor->t;
+    inputs_tensor[1] = dummy_tensor0->t;
+    inputs_tensor[2] = dummy_tensor1->t;
     outputs_tensor[0] = output->t;
     node = vxStreamProcessorNode(
         graph->g,
@@ -274,6 +291,9 @@ vsi_nn_kernel_node_t vsi_nn_sp_bn_in_times_v11_plus_v12_node
         output_count,
         spinst->sp,
         NULL);
+
+    status = vsi_nn_set_sp_kernel_name(node, kernel_name);
+    CHECK_STATUS_FAIL_GOTO(status, final );
 
 final:
     if (spinst)
@@ -289,7 +309,8 @@ vsi_nn_kernel_node_t vsi_nn_sp_bn_a_times_b_to_v11_node
         vsi_nn_graph_t              * graph,
         vsi_nn_tensor_t             * input,
         vsi_nn_tensor_t             * weight,
-        vsi_nn_tensor_t             * dummy_output
+        vsi_nn_tensor_t             * dummy_output,
+        char                        * kernel_name
     )
 {
     const int32_t spLoopInstsNum = 2;
@@ -334,6 +355,11 @@ vsi_nn_kernel_node_t vsi_nn_sp_bn_a_times_b_to_v11_node
     attr.v11_reset_at_start = VSI_NN_SP_V_RESET_AT_START_RESET;
     attr.v12_reset_at_start = VSI_NN_SP_V_RESET_AT_START_RESET;
 
+    attr.num_of_v11_rd_in_flush_cycle = 0;
+    attr.num_of_v12_rd_in_flush_cycle = 2;
+    attr.num_of_v11_wr_in_flush_cycle = 2;
+    attr.num_of_v12_wr_in_flush_cycle = 0;
+
     VSI_NN_SP_ATTR_SET_CONST_TO_SR3(attr, 1.0f);
     VSI_NN_SP_ATTR_SET_CONST_TO_SR6(attr, clamp_max);
     VSI_NN_SP_ATTR_SET_CONST_TO_SR7(attr, clamp_min);
@@ -357,6 +383,9 @@ vsi_nn_kernel_node_t vsi_nn_sp_bn_a_times_b_to_v11_node
         spinst->sp,
         NULL);
 
+    status = vsi_nn_set_sp_kernel_name(node, kernel_name);
+    CHECK_STATUS_FAIL_GOTO(status, final );
+
 final:
     if (spinst)
     {
@@ -371,7 +400,8 @@ vsi_nn_kernel_node_t vsi_nn_sp_bn_a_plus_v11_node
         vsi_nn_graph_t              * graph,
         vsi_nn_tensor_t             * input,
         vsi_nn_tensor_t             * dummy_tensor,
-        vsi_nn_tensor_t             * output
+        vsi_nn_tensor_t             * output,
+        char                        * kernel_name
     )
 {
     const int32_t spLoopInstsNum = 1;
@@ -422,6 +452,9 @@ vsi_nn_kernel_node_t vsi_nn_sp_bn_a_plus_v11_node
         spinst->sp,
         NULL);
 
+    status = vsi_nn_set_sp_kernel_name(node, kernel_name);
+    CHECK_STATUS_FAIL_GOTO(status, final );
+
 final:
     if (spinst)
     {
@@ -457,7 +490,7 @@ final:
 REGISTER_BATCH_NORM_STREAM_PROCESSOR_KERNEL( batch_norm )
 {
     vsi_status status = VX_SUCCESS;
-    vsi_nn_kernel_node_t node = NULL;
+    vsi_nn_kernel_node_t node[2] = {NULL};
     vsi_nn_tensor_attr_t attr;
     vsi_nn_tensor_t * weight = NULL;
     vsi_nn_tensor_t * bias = NULL;
@@ -474,39 +507,43 @@ REGISTER_BATCH_NORM_STREAM_PROCESSOR_KERNEL( batch_norm )
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_NONE;
     attr.is_const = FALSE;
     attr.vtl = TRUE;
-    attr.is_dummy = TRUE;
     attr.size[0] = 1;
     attr.size[1] = 1;
     attr.size[2] = 1;
     attr.size[axis] = element_count;
     attr.dim_num = axis == 0 ? 2 : 3;
-    dummy_tensor[0] = vsi_nn_CreateTensor( graph, &attr );
+    dummy_tensor[0] = vsi_nn_create_dummy_tensor( graph, &attr );
     CHECK_PTR_FAIL_GOTO( dummy_tensor[0], "Create dummy_tensor fail.", final );
+    dummy_tensor[1] = vsi_nn_create_dummy_tensor( graph, &attr );
+    CHECK_PTR_FAIL_GOTO( dummy_tensor[1], "Create dummy_tensor fail.", final );
 
     status = vsi_nn_get_bn_weight_bias(graph, &inputs[1], eps, input_scale, output_scale,
         axis, input_element_count, &weight, &bias);
     CHECK_STATUS_FAIL_GOTO( status, final );
     if (axis == 2)
     {
-        node = vsi_nn_sp_bn_mov_weight_bias_node(graph, weight, bias, dummy_tensor[0]);
-        CHECK_PTR_FAIL_GOTO( node, "Create mov_weight_bias fail.", final );
-        node = vsi_nn_sp_bn_in_times_v11_plus_v12_node(graph, inputs[0], dummy_tensor[0], outputs[0]);
-        CHECK_PTR_FAIL_GOTO( node, "Create in_times_v11_plus_v12 fail.", final );
+        node[0] = vsi_nn_sp_bn_mov_weight_bias_node(graph, weight, bias,
+            dummy_tensor[0], dummy_tensor[1], "batchnorm_0");
+        CHECK_PTR_FAIL_GOTO( node[0], "Create mov_weight_bias fail.", final );
+        node[1] = vsi_nn_sp_bn_in_times_v11_plus_v12_node(graph, inputs[0], dummy_tensor[0],
+            dummy_tensor[1], outputs[0], "batchnorm_1");
+        CHECK_PTR_FAIL_GOTO( node[1], "Create in_times_v11_plus_v12 fail.", final );
     }
     else
     {
-        node = vsi_nn_sp_bn_a_times_b_to_v11_node(graph, inputs[0], weight, dummy_tensor[0]);
-        CHECK_PTR_FAIL_GOTO( node, "Create a_times_b_to_v11 fail.", final );
-        node = vsi_nn_sp_bn_a_plus_v11_node(graph, bias, dummy_tensor[0], outputs[0]);
-        CHECK_PTR_FAIL_GOTO( node, "Create a_plus_v11 fail.", final );
+        node[0] = vsi_nn_sp_bn_a_times_b_to_v11_node(graph, inputs[0], weight, dummy_tensor[0], "batchnorm_0");
+        CHECK_PTR_FAIL_GOTO( node[0], "Create a_times_b_to_v11 fail.", final );
+        node[1] = vsi_nn_sp_bn_a_plus_v11_node(graph, bias, dummy_tensor[0], outputs[0], "batchnorm_1");
+        CHECK_PTR_FAIL_GOTO( node[1], "Create a_plus_v11 fail.", final );
     }
 final:
+    vsi_safe_release_node(node[0]);
     vsi_safe_release_tensor(weight);
     vsi_safe_release_tensor(bias);
     vsi_safe_release_tensor(dummy_tensor[0]);
     vsi_safe_release_tensor(dummy_tensor[1]);
 
-    return node;
+    return node[1];
 } /* batch_norm() */
 
 #undef REGISTER_BATCH_NORM_STREAM_PROCESSOR_KERNEL

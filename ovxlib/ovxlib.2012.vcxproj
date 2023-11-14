@@ -233,7 +233,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>include;$(AQROOT)\sdk\inc;$(ProjectDir)\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;src;$(AQROOT)\sdk\inc;$(ProjectDir)\inc</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDLL;_CRT_SECURE_NO_WARNINGS;OVXLIB_API=__declspec(dllexport);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <DisableSpecificWarnings>4201;4127;4200;4152;4245;4100;4310;4204</DisableSpecificWarnings>
@@ -256,7 +256,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>include;$(AQROOT)\sdk\inc;$(ProjectDir)\inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;src;$(AQROOT)\sdk\inc;$(ProjectDir)\inc</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDLL;_CRT_SECURE_NO_WARNINGS;OVXLIB_API=__declspec(dllexport);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <DisableSpecificWarnings>4201;4127;4200;4152;4245;4100;4310;4204</DisableSpecificWarnings>
@@ -279,7 +279,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>include;$(AQROOT)\sdk\inc;$(ProjectDir)\inc;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;src;$(AQROOT)\sdk\inc;$(ProjectDir)\inc;</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDLL;_CRT_SECURE_NO_WARNINGS;OVXLIB_API=__declspec(dllexport);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <DisableSpecificWarnings>4201;4127;4200;4152;4245;4100;4310;4204</DisableSpecificWarnings>
@@ -302,7 +302,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>include;$(AQROOT)\sdk\inc;$(ProjectDir)\inc;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;src;$(AQROOT)\sdk\inc;$(ProjectDir)\inc;</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDLL;_CRT_SECURE_NO_WARNINGS;OVXLIB_API=__declspec(dllexport);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <TreatWarningAsError>true</TreatWarningAsError>
@@ -325,7 +325,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>include;$(AQROOT)\sdk\inc;$(ProjectDir)\inc;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;src;$(AQROOT)\sdk\inc;$(ProjectDir)\inc;</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDLL;_CRT_SECURE_NO_WARNINGS;VSI_CFG_NNAPI_0_4;OVXLIB_API=__declspec(dllexport);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -346,7 +346,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>include;$(AQROOT)\sdk\inc;$(ProjectDir)\inc;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;src;$(AQROOT)\sdk\inc;$(ProjectDir)\inc;</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDLL;_CRT_SECURE_NO_WARNINGS;VSI_CFG_NNAPI_0_4;OVXLIB_API=__declspec(dllexport);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -367,7 +367,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>include;$(AQROOT)\sdk\inc;$(ProjectDir)\inc;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;src;$(AQROOT)\sdk\inc;$(ProjectDir)\inc;</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDLL;_CRT_SECURE_NO_WARNINGS;VSI_CFG_NNAPI_0_3;OVXLIB_API=__declspec(dllexport);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -388,7 +388,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>include;$(AQROOT)\sdk\inc;$(ProjectDir)\inc;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;src;$(AQROOT)\sdk\inc;$(ProjectDir)\inc;</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDLL;_CRT_SECURE_NO_WARNINGS;VSI_CFG_NNAPI_0_3;OVXLIB_API=__declspec(dllexport);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -449,7 +449,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(VIV_SDK_PATH)\include;$(SolutionDir)\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(OVXLIB_PATH)\src;$(VIV_SDK_PATH)\include;$(SolutionDir)\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDLL;OVXLIB_API=__declspec(dllexport);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -469,7 +469,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(VIV_SDK_PATH)\include;$(SolutionDir)\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(OVXLIB_PATH)\src;$(VIV_SDK_PATH)\include;$(SolutionDir)\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDLL;OVXLIB_API=__declspec(dllexport);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWarningAsError>true</TreatWarningAsError>
@@ -507,7 +507,6 @@
     <ClInclude Include="include\kernel\vsi_nn_kernel_node.h"/>
     <ClInclude Include="include\kernel\vsi_nn_sp_lut.h"/>
     <ClInclude Include="include\kernel\vsi_nn_sp_unit_operation.h"/>
-    <ClInclude Include="include\kernel\vsi_nn_spinst.h"/>
     <ClInclude Include="include\libnnext\vsi_nn_libnnext_resource.h"/>
     <ClInclude Include="include\libnnext\vsi_nn_vxkernel.h"/>
     <ClInclude Include="include\libnnext\vx_bin\vxc_binaries.h"/>
@@ -516,6 +515,7 @@
     <ClInclude Include="include\ops\vsi_nn_op_addn.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_argmax.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_argmin.h"/>
+    <ClInclude Include="include\ops\vsi_nn_op_avg_pool3d.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_axis_aligned_bbox_transform.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_batch2space.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_batch_norm.h"/>
@@ -523,6 +523,7 @@
     <ClInclude Include="include\ops\vsi_nn_op_bidirectional_sequence_lstm.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_bidirectional_sequence_rnn.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_box_with_nms_limit.h"/>
+    <ClInclude Include="include\ops\vsi_nn_op_bucketize.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_cast.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_celu.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_clip.h"/>
@@ -556,8 +557,10 @@
     <ClInclude Include="include\ops\vsi_nn_op_fullconnect.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_gather.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_gather_elements.h"/>
+    <ClInclude Include="include\ops\vsi_nn_op_gather_nd.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_gelu.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_generate_proposals.h"/>
+    <ClInclude Include="include\ops\vsi_nn_op_globallppool.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_grouped_conv1d.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_grouped_conv2d.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_groupnormalize.h"/>
@@ -583,6 +586,7 @@
     <ClInclude Include="include\ops\vsi_nn_op_log_softmax.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_logical_not.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_logical_ops.h"/>
+    <ClInclude Include="include\ops\vsi_nn_op_lppool.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_lrn.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_lsh_projection.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_lstm.h"/>
@@ -593,6 +597,7 @@
     <ClInclude Include="include\ops\vsi_nn_op_matrixmul.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_max_pool3d.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_maximum.h"/>
+    <ClInclude Include="include\ops\vsi_nn_op_maxunpool.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_mod.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_moments.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_multiply.h"/>
@@ -614,6 +619,7 @@
     <ClInclude Include="include\ops\vsi_nn_op_pre_process_rgb888_planar.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_pre_process_tensor.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_pre_process_yuv420.h"/>
+    <ClInclude Include="include\ops\vsi_nn_op_pre_process_yuv422.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_pre_process_yuv444.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_prelu.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_proposal.h"/>
@@ -643,11 +649,13 @@
     <ClInclude Include="include\ops\vsi_nn_op_resize_internal.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_resize_nearest_internal.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_reverse.h"/>
+    <ClInclude Include="include\ops\vsi_nn_op_reversesequence.h" />
     <ClInclude Include="include\ops\vsi_nn_op_rnn.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_rnncell_ovxlib.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_roi_align.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_roi_pool.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_scale.h"/>
+    <ClInclude Include="include\ops\vsi_nn_op_scatter_elements.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_scatter_nd.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_scatter_nd_update.h"/>
     <ClInclude Include="include\ops\vsi_nn_op_select.h"/>
@@ -683,7 +691,6 @@
     <ClInclude Include="include\ops\vsi_nn_op_variable.h"/>
     <ClInclude Include="include\post\vsi_nn_post_cmupose.h"/>
     <ClInclude Include="include\post\vsi_nn_post_fasterrcnn.h"/>
-    <ClInclude Include="include\pycc\vsi_pycc_interface.h"/>
     <ClInclude Include="include\quantization\vsi_nn_asymmetric_affine.h"/>
     <ClInclude Include="include\quantization\vsi_nn_dynamic_fixed_point.h"/>
     <ClInclude Include="include\quantization\vsi_nn_perchannel_symmetric_affine.h"/>
@@ -701,7 +708,6 @@
     <ClInclude Include="include\utils\vsi_nn_shape_util.h"/>
     <ClInclude Include="include\utils\vsi_nn_tensor_op.h"/>
     <ClInclude Include="include\utils\vsi_nn_util.h"/>
-    <ClInclude Include="include\utils\vsi_nn_vdata.h"/>
     <ClInclude Include="include\vip\virtual_device.h"/>
     <ClInclude Include="include\vsi_nn_assert.h"/>
     <ClInclude Include="include\vsi_nn_client_op.h"/>
@@ -732,6 +738,11 @@
     <ClInclude Include="include\vsi_nn_test.h"/>
     <ClInclude Include="include\vsi_nn_types.h"/>
     <ClInclude Include="include\vsi_nn_version.h"/>
+    <ClInclude Include="src\kernel\vsi_nn_spinst.h"/>
+    <ClInclude Include="src\vip\virtual_device_private.h"/>
+    <ClInclude Include="src\vsi_nn_kernel_prv.h"/>
+    <ClInclude Include="src\vsi_nn_tensor_util_prv.h"/>
+    <ClInclude Include="src\vsi_nn_types_prv.h"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="include\custom\custom_node_type.def"/>
@@ -791,7 +802,13 @@
     <ClCompile Include="src\kernel\cl\argmin_cl.c">
       <ObjectFileName>$(IntDir)\src\kernel\cl\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\kernel\cl\avg_pool3d_cl.c">
+      <ObjectFileName>$(IntDir)\src\kernel\cl\</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="src\kernel\cl\batchnorm_single_cl.c">
+      <ObjectFileName>$(IntDir)\src\kernel\cl\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="src\kernel\cl\bucketize_cl.c">
       <ObjectFileName>$(IntDir)\src\kernel\cl\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\kernel\cl\cast_cl.c">
@@ -833,6 +850,9 @@
     <ClCompile Include="src\kernel\cl\gather_nd_cl.c">
       <ObjectFileName>$(IntDir)\src\kernel\cl\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\kernel\cl\globallppool_cl.c">
+      <ObjectFileName>$(IntDir)\src\kernel\cl\</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="src\kernel\cl\group_normalization_cl.c">
       <ObjectFileName>$(IntDir)\src\kernel\cl\</ObjectFileName>
     </ClCompile>
@@ -869,6 +889,9 @@
     <ClCompile Include="src\kernel\cl\logical_ops_cl.c">
       <ObjectFileName>$(IntDir)\src\kernel\cl\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\kernel\cl\lppool_cl.c">
+      <ObjectFileName>$(IntDir)\src\kernel\cl\</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="src\kernel\cl\lstmunit_activation_cl.c">
       <ObjectFileName>$(IntDir)\src\kernel\cl\</ObjectFileName>
     </ClCompile>
@@ -879,6 +902,9 @@
       <ObjectFileName>$(IntDir)\src\kernel\cl\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\kernel\cl\maxpoolwithargmax_cl.c">
+      <ObjectFileName>$(IntDir)\src\kernel\cl\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="src\kernel\cl\maxunpool_cl.c">
       <ObjectFileName>$(IntDir)\src\kernel\cl\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\kernel\cl\minimum_cl.c">
@@ -938,7 +964,13 @@
     <ClCompile Include="src\kernel\cl\resize_nearest_cl.c">
       <ObjectFileName>$(IntDir)\src\kernel\cl\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\kernel\cl\reversesequence_cl.c">
+      <ObjectFileName>$(IntDir)\src\kernel\cl\</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="src\kernel\cl\roi_align_cl.c">
+      <ObjectFileName>$(IntDir)\src\kernel\cl\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="src\kernel\cl\scatter_elements_cl.c">
       <ObjectFileName>$(IntDir)\src\kernel\cl\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\kernel\cl\scatter_nd_cl.c">
@@ -983,6 +1015,9 @@
     <ClCompile Include="src\kernel\cpu\argmin_cpu.c">
       <ObjectFileName>$(IntDir)\src\kernel\cpu\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\kernel\cpu\avg_pool3d_cpu.c">
+      <ObjectFileName>$(IntDir)\src\kernel\cpu\</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="src\kernel\cpu\axis_aligned_bbox_transform_cpu.c">
       <ObjectFileName>$(IntDir)\src\kernel\cpu\</ObjectFileName>
     </ClCompile>
@@ -990,6 +1025,9 @@
       <ObjectFileName>$(IntDir)\src\kernel\cpu\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\kernel\cpu\box_with_nms_limit_cpu.c">
+      <ObjectFileName>$(IntDir)\src\kernel\cpu\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="src\kernel\cpu\bucketize_cpu.c">
       <ObjectFileName>$(IntDir)\src\kernel\cpu\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\kernel\cpu\cast_cpu.c">
@@ -1049,6 +1087,9 @@
     <ClCompile Include="src\kernel\cpu\generate_proposals_cpu.c">
       <ObjectFileName>$(IntDir)\src\kernel\cpu\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\kernel\cpu\globallppool_cpu.c">
+      <ObjectFileName>$(IntDir)\src\kernel\cpu\</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="src\kernel\cpu\group_normalization_cpu.c">
       <ObjectFileName>$(IntDir)\src\kernel\cpu\</ObjectFileName>
     </ClCompile>
@@ -1088,6 +1129,9 @@
     <ClCompile Include="src\kernel\cpu\logical_ops_cpu.c">
       <ObjectFileName>$(IntDir)\src\kernel\cpu\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\kernel\cpu\lppool_cpu.c">
+      <ObjectFileName>$(IntDir)\src\kernel\cpu\</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="src\kernel\cpu\lstmunit_activation_cpu.c">
       <ObjectFileName>$(IntDir)\src\kernel\cpu\</ObjectFileName>
     </ClCompile>
@@ -1098,6 +1142,9 @@
       <ObjectFileName>$(IntDir)\src\kernel\cpu\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\kernel\cpu\maxpoolwithargmax_cpu.c">
+      <ObjectFileName>$(IntDir)\src\kernel\cpu\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="src\kernel\cpu\maxunpool_cpu.c">
       <ObjectFileName>$(IntDir)\src\kernel\cpu\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\kernel\cpu\minimum_cpu.c">
@@ -1137,6 +1184,9 @@
       <ObjectFileName>$(IntDir)\src\kernel\cpu\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\kernel\cpu\pre_process_yuv420_cpu.c">
+      <ObjectFileName>$(IntDir)\src\kernel\cpu\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="src\kernel\cpu\pre_process_yuv422_cpu.c">
       <ObjectFileName>$(IntDir)\src\kernel\cpu\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\kernel\cpu\pre_process_yuv444_cpu.c">
@@ -1184,7 +1234,13 @@
     <ClCompile Include="src\kernel\cpu\resize_nearest_cpu.c">
       <ObjectFileName>$(IntDir)\src\kernel\cpu\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\kernel\cpu\reversesequence_cpu.c">
+      <ObjectFileName>$(IntDir)\src\kernel\cpu\</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="src\kernel\cpu\roi_align_cpu.c">
+      <ObjectFileName>$(IntDir)\src\kernel\cpu\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="src\kernel\cpu\scatter_elements_cpu.c">
       <ObjectFileName>$(IntDir)\src\kernel\cpu\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\kernel\cpu\scatter_nd_cpu.c">
@@ -1245,6 +1301,9 @@
       <ObjectFileName>$(IntDir)\src\kernel\evis\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\kernel\evis\batchnorm_single_evis.c">
+      <ObjectFileName>$(IntDir)\src\kernel\evis\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="src\kernel\evis\bucketize_evis.c">
       <ObjectFileName>$(IntDir)\src\kernel\evis\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\kernel\evis\cast_evis.c">
@@ -1376,6 +1435,9 @@
     <ClCompile Include="src\kernel\evis\pre_process_yuv420_evis.c">
       <ObjectFileName>$(IntDir)\src\kernel\evis\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\kernel\evis\pre_process_yuv422_evis.c">
+      <ObjectFileName>$(IntDir)\src\kernel\evis\</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="src\kernel\evis\pre_process_yuv444_evis.c">
       <ObjectFileName>$(IntDir)\src\kernel\evis\</ObjectFileName>
     </ClCompile>
@@ -1463,6 +1525,9 @@
     <ClCompile Include="src\kernel\sp\batch_norm_sp.c">
       <ObjectFileName>$(IntDir)\src\kernel\sp\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\kernel\sp\comparisons_sp.c">
+      <ObjectFileName>$(IntDir)\src\kernel\sp\</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="src\kernel\sp\eltwise_sp.c">
       <ObjectFileName>$(IntDir)\src\kernel\sp\</ObjectFileName>
     </ClCompile>
@@ -1487,10 +1552,16 @@
     <ClCompile Include="src\kernel\sp\l2_normalize_sp.c">
       <ObjectFileName>$(IntDir)\src\kernel\sp\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\kernel\sp\l2_normalize_z_direction_sp.c">
+      <ObjectFileName>$(IntDir)\src\kernel\sp\</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="src\kernel\sp\layer_norm_sp.c">
       <ObjectFileName>$(IntDir)\src\kernel\sp\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\kernel\sp\layer_norm_y_direction_sp.c">
+      <ObjectFileName>$(IntDir)\src\kernel\sp\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="src\kernel\sp\logical_sp.c">
       <ObjectFileName>$(IntDir)\src\kernel\sp\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\kernel\sp\lstmunit_activation_sp.c">
@@ -1502,10 +1573,19 @@
     <ClCompile Include="src\kernel\sp\minimum_sp.c">
       <ObjectFileName>$(IntDir)\src\kernel\sp\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\kernel\sp\reduce_max_sp.c">
+      <ObjectFileName>$(IntDir)\src\kernel\sp\</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="src\kernel\sp\reduce_mean_sp.c">
       <ObjectFileName>$(IntDir)\src\kernel\sp\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\kernel\sp\softmax_sp.c">
+      <ObjectFileName>$(IntDir)\src\kernel\sp\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="src\kernel\sp\softmax_y_direction_sp.c">
+      <ObjectFileName>$(IntDir)\src\kernel\sp\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="src\kernel\sp\softmax_z_direction_sp.c">
       <ObjectFileName>$(IntDir)\src\kernel\sp\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\kernel\vsi_nn_gpu.c">
@@ -1604,6 +1684,9 @@
     <ClCompile Include="src\ops\vsi_nn_op_argmaxmin.c">
       <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\ops\vsi_nn_op_avg_pool3d.c">
+      <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_axis_aligned_bbox_transform.c">
       <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
     </ClCompile>
@@ -1623,6 +1706,9 @@
       <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_box_with_nms_limit.c">
+      <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="src\ops\vsi_nn_op_bucketize.c">
       <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_cast.c">
@@ -1742,6 +1828,9 @@
     <ClCompile Include="src\ops\vsi_nn_op_generate_proposals.c">
       <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\ops\vsi_nn_op_globallppool.c">
+      <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_grouped_conv1d.c">
       <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
     </ClCompile>
@@ -1817,6 +1906,9 @@
     <ClCompile Include="src\ops\vsi_nn_op_logical_ops.c">
       <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\ops\vsi_nn_op_lppool.c">
+      <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_lrn.c">
       <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
     </ClCompile>
@@ -1848,6 +1940,9 @@
       <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_maxpoolwithargmax.c">
+      <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="src\ops\vsi_nn_op_maxunpool.c">
       <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_mod.c">
@@ -1908,6 +2003,9 @@
       <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_pre_process_yuv420.c">
+      <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="src\ops\vsi_nn_op_pre_process_yuv422.c">
       <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_pre_process_yuv444.c">
@@ -1991,6 +2089,9 @@
     <ClCompile Include="src\ops\vsi_nn_op_reverse.c">
       <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\ops\vsi_nn_op_reversesequence.c" >
+      <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_rnn.c">
       <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
     </ClCompile>
@@ -2007,6 +2108,9 @@
       <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_scale.c">
+      <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="src\ops\vsi_nn_op_scatter_elements.c">
       <ObjectFileName>$(IntDir)\src\ops\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_scatter_nd.c">
@@ -2117,9 +2221,6 @@
     <ClCompile Include="src\post\vsi_nn_post_fasterrcnn.c">
       <ObjectFileName>$(IntDir)\src\post\</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="src\pycc\vsi_pycc_interface.c">
-      <ObjectFileName>$(IntDir)\src\pycc\</ObjectFileName>
-    </ClCompile>
     <ClCompile Include="src\quantization\vsi_nn_asymmetric_affine.c">
       <ObjectFileName>$(IntDir)\src\quantization\</ObjectFileName>
     </ClCompile>
@@ -2169,9 +2270,6 @@
       <ObjectFileName>$(IntDir)\src\utils\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\utils\vsi_nn_util.c">
-      <ObjectFileName>$(IntDir)\src\utils\</ObjectFileName>
-    </ClCompile>
-    <ClCompile Include="src\utils\vsi_nn_vdata.c">
       <ObjectFileName>$(IntDir)\src\utils\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="src\vsi_nn_client_op.c">

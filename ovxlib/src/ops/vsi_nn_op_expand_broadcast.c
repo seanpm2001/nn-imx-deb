@@ -43,7 +43,7 @@ static vsi_status op_compute
     vsi_nn_tensor_t ** outputs
     )
 {
-    return vsi_nn_internal_compute_node( self );;
+    return vsi_nn_internal_compute_node( self );
 }
 
 static vsi_bool op_check
@@ -118,7 +118,14 @@ static vsi_bool op_setup
 
     memset(&attr, 0, sizeof(vsi_nn_tensor_attr_t));
     attr.dim_num = p->dim_num;
-    attr.dtype.vx_type = VSI_NN_TYPE_FLOAT16;
+    if (inputs[0]->attr.dtype.qnt_type == VSI_NN_QNT_TYPE_NONE &&
+        (inputs[0]->attr.dtype.vx_type == VSI_NN_TYPE_INT32 ||
+        inputs[0]->attr.dtype.vx_type == VSI_NN_TYPE_INT16)) {
+        attr.dtype.vx_type = VSI_NN_TYPE_INT32;
+    }
+    else {
+        attr.dtype.vx_type = VSI_NN_TYPE_FLOAT16;
+    }
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_NONE;
     attr.is_const = TRUE;
     for(i = 0; i < p->dim_num; i++)

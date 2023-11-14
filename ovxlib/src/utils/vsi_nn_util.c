@@ -782,7 +782,7 @@ uint32_t vsi_nn_ShapeToString
 #define _NOT_PRINT_FMT (1)
     vsi_size_t s;
     uint32_t count;
-    const char * all_fmt[] = {" %d,", "%d_" };
+    const char * all_fmt[] = {" %"VSI_SIZE_T_SPECIFIER",", "%"VSI_SIZE_T_SPECIFIER"_" };
     const char * fmt;
     if( NULL == shape || NULL == buf
         || dim_num == 0 || buf_sz == 0 )
@@ -1513,3 +1513,49 @@ vsi_status vsi_nn_Unpack4bitData
     }
     return status;
 } /* vsi_nn_Unpack4bitData() */
+
+vsi_bool vsi_nn_is_3d_tensor
+    (
+    vsi_nn_tensor_t * tensor
+    )
+{
+    if (3 == tensor->attr.dim_num)
+    {
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
+}
+
+vsi_bool vsi_nn_is_stream_process_supported_types
+    (
+    vsi_nn_graph_t* graph,
+    vsi_nn_tensor_t** inputs,
+    size_t input_num
+    )
+{
+    size_t i = 0;
+
+    if ( graph->ctx->config.support_stream_processor == 0 )
+    {
+        return FALSE;
+    }
+
+    if ( graph->ctx->config.sp_exec_count == 0 )
+    {
+        return FALSE;
+    }
+
+    for (i = 0; i < input_num; i++)
+    {
+        if (inputs && input_num > 0 && inputs[i] &&
+            inputs[i]->attr.dtype.vx_type == VSI_NN_TYPE_INT32)
+        {
+            return FALSE;
+        }
+    }
+
+    return TRUE;
+}

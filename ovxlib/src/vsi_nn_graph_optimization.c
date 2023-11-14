@@ -340,9 +340,10 @@ static vsi_status _add_graph_dataconvert_for_int8
                _add_dataconvert_node(graph, dataconvert_idx ++, VSI_NN_OPTIMIZE_FORWARD,
                    input_nodes[i], nodes_count, id, output);
             }
-            if(input_nodes[i] != NULL)
+            if (input_nodes[i] != NULL)
             {
                 free(input_nodes[i]);
+                input_nodes[i] = NULL;
             }
         }
 
@@ -495,13 +496,17 @@ vsi_status vsi_nn_CopyDataToRawTensor
         vxSwapTensorHandle( tensor, NULL, (void **)&ptr);
         if ( ptr == NULL )
         {
-            VSILOGE("vxSwapTensorHandle fail.");
+            VSILOGE("Tensor handle is NULL.");
             return VSI_FAILURE;
         }
         memcpy( ptr, data, vsi_nn_GetTensorSize(attr.size, attr.dim_num,
                     attr.dtype.vx_type));
+#ifdef VSI_INVALIDATE_HANDLE_SUPPORT
+        status = vxFlushHandle((vx_reference)tensor);
+#else
         status = vxSwapTensorHandle( tensor, ptr, NULL );
         status |= vxFlushHandle( (vx_reference)tensor );
+#endif
     }
     else
     {
@@ -578,7 +583,7 @@ static vx_tensor _create_const_raw_tensor
 
     if( TRUE == attr.is_created_from_handle )
     {
-        vx_tensor_addressing addr;
+        vx_tensor_addressing addr = NULL;
         vsi_size_t stride_size[VSI_NN_MAX_DIM_NUM];
         vsi_size_t buf_sz;
 
@@ -595,23 +600,22 @@ static vx_tensor _create_const_raw_tensor
             }
             else
             {
-                attr.is_handle_malloc_by_ovxlib = FALSE;
+                if (TRUE == attr.is_handle_malloc_by_ovxlib)
+                {
+                    VSILOGE("Data allocated by OVXLIB should not be shared by other OVXLIB tensor.");
+                    tensor = NULL;
+                    goto final;
+                }
                 if (!vsi_nn_IsBufferAligned(data, align_start_size))
                 {
                     VSILOGE( "vsi_nn_IsBufferAligned is FALSE." );
-                    if( scales )
-                    {
-                        free( scales );
-                    }
-                    if (zeroPoints)
-                    {
-                        free( zeroPoints );
-                    }
-                    return NULL;
+                    tensor = NULL;
+                    goto final;
                 }
             }
             if( data )
             {
+                vsi_status status = VSI_FAILURE;
 #ifdef VSI_40BIT_VA_SUPPORT
                 {
                     vx_size size[_cnt_of_array(attr.size)] = {0};
@@ -653,8 +657,21 @@ static vx_tensor _create_const_raw_tensor
                     addr, data, VX_MEMORY_TYPE_HOST);
 #endif
                 //memset(data, 0x5A, buf_sz);
-                vxReleaseTensorAddressing( &addr );
-                vxFlushHandle( (vx_reference)tensor );
+                if (addr)
+                {
+                    vxReleaseTensorAddressing( &addr );
+                }
+                if ( NULL == tensor )
+                {
+                    VSILOGE( "Create vx tensor fail." );
+                    goto final;
+                }
+                status = vxFlushHandle( (vx_reference)tensor );
+                if (VSI_SUCCESS != status)
+                {
+                    VSILOGE("Flush handle fail.");
+                    goto final;
+                }
             }
         }
     }
@@ -668,6 +685,8 @@ static vx_tensor _create_const_raw_tensor
         tensor = vxCreateVirtualTensor2( graph->g,
             &params, sizeof( vx_tensor_create_params_t ) );
     }
+
+final:
     if( NULL == tensor )
     {
         VSILOGE( "Create vx tensor fail." );

@@ -29,18 +29,21 @@
 #include "vsi_nn_prv.h"
 #include "vsi_nn_tensor_util.h"
 #include "vsi_nn_error.h"
+#include "vsi_nn_kernel_prv.h"
+#include "vsi_nn_tensor_util_prv.h"
 #include "kernel/vsi_nn_kernel.h"
 #include "kernel/vsi_nn_sp_unit_operation.h"
 #include "kernel/vsi_nn_sp_lut.h"
 
-#if (VX_STREAM_PROCESSOR_SUPPORT)
+#if (VX_STREAM_PROCESSOR_SUPPORT) && (VSI_NN_SUPPORT_LSTM_GRU_SP_IMPL)
 
 vsi_nn_kernel_node_t vsi_nn_sp_grucell_r_times_h_node
     (
         vsi_nn_graph_t  * graph,
         vsi_nn_tensor_t * input0,
         vsi_nn_tensor_t * input1,
-        vsi_nn_tensor_t * output
+        vsi_nn_tensor_t * output,
+        char            * kernel_name
     )
 {
     const int32_t spInitInstsNum = 0;
@@ -75,7 +78,7 @@ vsi_nn_kernel_node_t vsi_nn_sp_grucell_r_times_h_node
     status |= vsi_nn_sp_move(&sp_insts_param[2], VSI_NN_SP_SR1, VSI_NN_SP_VR12);
     CHECK_STATUS_FAIL_GOTO(status, final );
 
-    attr.input_tile_mapping = VSI_NN_SP_ATTR_INPUT_TILE_MAPPING_YZMERGE;
+    attr.input_tile_mapping = VSI_NN_SP_ATTR_INPUT_TILE_MAPPING_XYMERGE;
 
     attr.input_setup = VSI_NN_SP_INPUT_SETUP_INTERLEAVE_TWO_INPUT;
     attr.prog_init_instr_num = spInitInstsNum;
@@ -88,6 +91,11 @@ vsi_nn_kernel_node_t vsi_nn_sp_grucell_r_times_h_node
     attr.ignored_leading_v12_rd = 3;
     attr.v11_reset_at_start = VX_SP_ATTRIBUTE_V_RESET_AT_START_RESET;
     attr.v12_reset_at_start = VX_SP_ATTRIBUTE_V_RESET_AT_START_RESET;
+
+    attr.num_of_v11_rd_in_flush_cycle = 5;
+    attr.num_of_v11_wr_in_flush_cycle = 0;
+    attr.num_of_v12_rd_in_flush_cycle = 3;
+    attr.num_of_v12_wr_in_flush_cycle = 2;
 
     spinst = vsi_nn_create_spinst(graph);
     CHECK_PTR_FAIL_GOTO( spinst, "Create spInst fail.", final );
@@ -108,6 +116,9 @@ vsi_nn_kernel_node_t vsi_nn_sp_grucell_r_times_h_node
         spinst->sp,
         NULL);
 
+    status = vsi_nn_set_sp_kernel_name(node, kernel_name);
+    CHECK_STATUS_FAIL_GOTO(status, final );
+
 final:
     if (spinst)
     {
@@ -122,7 +133,8 @@ vsi_nn_kernel_node_t vsi_nn_sp_grucell_r_times_h_qnt_node
         vsi_nn_graph_t  * graph,
         vsi_nn_tensor_t * input0,
         vsi_nn_tensor_t * input1,
-        vsi_nn_tensor_t * output
+        vsi_nn_tensor_t * output,
+        char            * kernel_name
     )
 {
     const int32_t spInitInstsNum = 0;
@@ -159,7 +171,7 @@ vsi_nn_kernel_node_t vsi_nn_sp_grucell_r_times_h_qnt_node
     status |= vsi_nn_sp_mul(&sp_insts_param[3], VSI_NN_SP_PWLMUL, VSI_NN_SP_PWLMUL, VSI_NN_SP_SR5);
     status |= vsi_nn_sp_sub(&sp_insts_param[3], VSI_NN_SP_PWLADD, VSI_NN_SP_PWLADD, VSI_NN_SP_SR2);
 
-    attr.input_tile_mapping = VSI_NN_SP_ATTR_INPUT_TILE_MAPPING_YZMERGE;
+    attr.input_tile_mapping = VSI_NN_SP_ATTR_INPUT_TILE_MAPPING_XYMERGE;
 
     attr.input_setup = VSI_NN_SP_INPUT_SETUP_INTERLEAVE_TWO_INPUT;
     attr.prog_init_instr_num = spInitInstsNum;
@@ -172,6 +184,11 @@ vsi_nn_kernel_node_t vsi_nn_sp_grucell_r_times_h_qnt_node
     attr.ignored_leading_v12_rd = 2;
     attr.v11_reset_at_start = VX_SP_ATTRIBUTE_V_RESET_AT_START_RESET;
     attr.v12_reset_at_start = VX_SP_ATTRIBUTE_V_RESET_AT_START_RESET;
+
+    attr.num_of_v11_rd_in_flush_cycle = 3;
+    attr.num_of_v11_wr_in_flush_cycle = 1;
+    attr.num_of_v12_rd_in_flush_cycle = 2;
+    attr.num_of_v12_wr_in_flush_cycle = 1;
 
     VSI_NN_SP_ATTR_SET_CONST_TO_SR4(attr, hstate_scale);
     VSI_NN_SP_ATTR_SET_CONST_TO_SR7(attr, const2);
@@ -195,6 +212,9 @@ vsi_nn_kernel_node_t vsi_nn_sp_grucell_r_times_h_qnt_node
         spinst->sp,
         NULL);
 
+    status = vsi_nn_set_sp_kernel_name(node, kernel_name);
+    CHECK_STATUS_FAIL_GOTO(status, final );
+
 final:
     if (spinst)
     {
@@ -209,7 +229,8 @@ vsi_nn_kernel_node_t vsi_nn_sp_add_node
         vsi_nn_graph_t              * graph,
         vsi_nn_tensor_t             * input0,
         vsi_nn_tensor_t             * input1,
-        vsi_nn_tensor_t             * output
+        vsi_nn_tensor_t             * output,
+        char                        * kernel_name
     );
 
 #define REGISTER_GRUCELL_ACTIVATION_STREAM_PROCESSOR_KERNEL( kernel_name )   \
@@ -237,7 +258,7 @@ vsi_nn_kernel_node_t vsi_nn_sp_add_node
 
 REGISTER_GRUCELL_ACTIVATION_STREAM_PROCESSOR_KERNEL( grucell_h_times_activation_r )
 {
-    vsi_nn_kernel_node_t node = NULL;
+    vsi_nn_kernel_node_t node[2] = {NULL};
     vsi_nn_tensor_attr_t attr;
     int32_t  recurrent_activation;
     vsi_nn_tensor_t *gate_r = NULL;
@@ -259,19 +280,26 @@ REGISTER_GRUCELL_ACTIVATION_STREAM_PROCESSOR_KERNEL( grucell_h_times_activation_
     gate_r = vsi_nn_CreateTensor( graph, &attr );
     CHECK_PTR_FAIL_GOTO( gate_r, "Create tensor fail.", final );
 
+    node[0] = vsi_nn_sp_add_node(graph, inputs[1], inputs[2], gate_r, "grucell_h_times_activation_r_0");
+    CHECK_PTR_FAIL_GOTO( node[0] , "Create grucell activation sp add node fail.", final );
+
     if (hstate_scale == 1 && const2 == 0)
     {
-        node = vsi_nn_sp_grucell_r_times_h_node(graph, gate_r, inputs[0], outputs[0]);
+        node[1]  = vsi_nn_sp_grucell_r_times_h_node(graph, gate_r, inputs[0], outputs[0],
+            "grucell_h_times_activation_r_1");
     }
     else
     {
-        node = vsi_nn_sp_grucell_r_times_h_qnt_node(graph, gate_r, inputs[0], outputs[0]);
+        node[1]  = vsi_nn_sp_grucell_r_times_h_qnt_node(graph, gate_r, inputs[0], outputs[0],
+            "grucell_h_times_activation_r_1");
     }
-    CHECK_PTR_FAIL_GOTO( node, "Create grucell activation sp add node fail.", final );
+    CHECK_PTR_FAIL_GOTO( node[1] , "Create grucell activation sp r_times_h node fail.", final );
 
 final:
+    vsi_safe_release_node(node[0]);
     vsi_safe_release_tensor(gate_r);
-    return node;
+
+    return node[1];
 } /* grucell_h_times_activation_r() */
 
 #undef REGISTER_GRUCELL_ACTIVATION_STREAM_PROCESSOR_KERNEL
