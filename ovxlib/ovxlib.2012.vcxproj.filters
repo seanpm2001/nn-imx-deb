@@ -37,9 +37,6 @@
     <Filter Include="Header Files\post">
       <UniqueIdentifier>{b87f43b4-b95e-33be-85de-0860ec243ce4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\pycc">
-      <UniqueIdentifier>{7e4a9f31-2c64-30c5-a9d5-2565fb8872ef}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\quantization">
       <UniqueIdentifier>{10d843b4-8ec1-3a6e-a778-7ebd39dfdeb1}</UniqueIdentifier>
     </Filter>
@@ -94,14 +91,14 @@
     <Filter Include="Source Files\post">
       <UniqueIdentifier>{66706e5b-54b6-30ab-b4b5-f963edecd35f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\pycc">
-      <UniqueIdentifier>{cd87064c-df55-3569-8448-805dffd32010}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\quantization">
       <UniqueIdentifier>{4b970fd8-1bb6-38c9-82a7-e32308a408b7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\utils">
       <UniqueIdentifier>{28374633-e4c5-3557-9da2-dd71e103460c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\vip">
+      <UniqueIdentifier>{cfec9ab3-c329-35a5-80b9-b0f947962cb6}</UniqueIdentifier>
     </Filter>
     </ItemGroup>
   <ItemGroup>
@@ -156,9 +153,6 @@
     <ClInclude Include="include\kernel\vsi_nn_sp_unit_operation.h">
       <Filter>Header Files\kernel</Filter>
     </ClInclude>
-    <ClInclude Include="include\kernel\vsi_nn_spinst.h">
-      <Filter>Header Files\kernel</Filter>
-    </ClInclude>
     <ClInclude Include="include\libnnext\vsi_nn_libnnext_resource.h">
       <Filter>Header Files\libnnext</Filter>
     </ClInclude>
@@ -183,6 +177,9 @@
     <ClInclude Include="include\ops\vsi_nn_op_argmin.h">
       <Filter>Header Files\ops</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\vsi_nn_op_avg_pool3d.h">
+      <Filter>Header Files\ops</Filter>
+    </ClInclude>
     <ClInclude Include="include\ops\vsi_nn_op_axis_aligned_bbox_transform.h">
       <Filter>Header Files\ops</Filter>
     </ClInclude>
@@ -202,6 +199,9 @@
       <Filter>Header Files\ops</Filter>
     </ClInclude>
     <ClInclude Include="include\ops\vsi_nn_op_box_with_nms_limit.h">
+      <Filter>Header Files\ops</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ops\vsi_nn_op_bucketize.h">
       <Filter>Header Files\ops</Filter>
     </ClInclude>
     <ClInclude Include="include\ops\vsi_nn_op_cast.h">
@@ -303,10 +303,16 @@
     <ClInclude Include="include\ops\vsi_nn_op_gather_elements.h">
       <Filter>Header Files\ops</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\vsi_nn_op_gather_nd.h">
+      <Filter>Header Files\ops</Filter>
+    </ClInclude>
     <ClInclude Include="include\ops\vsi_nn_op_gelu.h">
       <Filter>Header Files\ops</Filter>
     </ClInclude>
     <ClInclude Include="include\ops\vsi_nn_op_generate_proposals.h">
+      <Filter>Header Files\ops</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ops\vsi_nn_op_globallppool.h">
       <Filter>Header Files\ops</Filter>
     </ClInclude>
     <ClInclude Include="include\ops\vsi_nn_op_grouped_conv1d.h">
@@ -384,6 +390,9 @@
     <ClInclude Include="include\ops\vsi_nn_op_logical_ops.h">
       <Filter>Header Files\ops</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\vsi_nn_op_lppool.h">
+      <Filter>Header Files\ops</Filter>
+    </ClInclude>
     <ClInclude Include="include\ops\vsi_nn_op_lrn.h">
       <Filter>Header Files\ops</Filter>
     </ClInclude>
@@ -412,6 +421,9 @@
       <Filter>Header Files\ops</Filter>
     </ClInclude>
     <ClInclude Include="include\ops\vsi_nn_op_maximum.h">
+      <Filter>Header Files\ops</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ops\vsi_nn_op_maxunpool.h">
       <Filter>Header Files\ops</Filter>
     </ClInclude>
     <ClInclude Include="include\ops\vsi_nn_op_mod.h">
@@ -475,6 +487,9 @@
       <Filter>Header Files\ops</Filter>
     </ClInclude>
     <ClInclude Include="include\ops\vsi_nn_op_pre_process_yuv420.h">
+      <Filter>Header Files\ops</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ops\vsi_nn_op_pre_process_yuv422.h">
       <Filter>Header Files\ops</Filter>
     </ClInclude>
     <ClInclude Include="include\ops\vsi_nn_op_pre_process_yuv444.h">
@@ -564,6 +579,9 @@
     <ClInclude Include="include\ops\vsi_nn_op_reverse.h">
       <Filter>Header Files\ops</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\vsi_nn_op_reversesequence.h">
+      <Filter>Header Files\ops</Filter>
+    </ClInclude>
     <ClInclude Include="include\ops\vsi_nn_op_rnn.h">
       <Filter>Header Files\ops</Filter>
     </ClInclude>
@@ -577,6 +595,9 @@
       <Filter>Header Files\ops</Filter>
     </ClInclude>
     <ClInclude Include="include\ops\vsi_nn_op_scale.h">
+      <Filter>Header Files\ops</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ops\vsi_nn_op_scatter_elements.h">
       <Filter>Header Files\ops</Filter>
     </ClInclude>
     <ClInclude Include="include\ops\vsi_nn_op_scatter_nd.h">
@@ -684,9 +705,6 @@
     <ClInclude Include="include\post\vsi_nn_post_fasterrcnn.h">
       <Filter>Header Files\post</Filter>
     </ClInclude>
-    <ClInclude Include="include\pycc\vsi_pycc_interface.h">
-      <Filter>Header Files\pycc</Filter>
-    </ClInclude>
     <ClInclude Include="include\quantization\vsi_nn_asymmetric_affine.h">
       <Filter>Header Files\quantization</Filter>
     </ClInclude>
@@ -736,9 +754,6 @@
       <Filter>Header Files\utils</Filter>
     </ClInclude>
     <ClInclude Include="include\utils\vsi_nn_util.h">
-      <Filter>Header Files\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="include\utils\vsi_nn_vdata.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
     <ClInclude Include="include\vip\virtual_device.h">
@@ -831,6 +846,21 @@
     <ClInclude Include="include\vsi_nn_version.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\kernel\vsi_nn_spinst.h">
+      <Filter>Source Files\kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vip\virtual_device_private.h">
+      <Filter>Source Files\vip</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vsi_nn_kernel_prv.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vsi_nn_tensor_util_prv.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vsi_nn_types_prv.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpu_backend\npuref_interface.c">
@@ -884,7 +914,13 @@
     <ClCompile Include="src\kernel\cl\argmin_cl.c">
       <Filter>Source Files\kernel\cl</Filter>
     </ClCompile>
+    <ClCompile Include="src\kernel\cl\avg_pool3d_cl.c">
+      <Filter>Source Files\kernel\cl</Filter>
+    </ClCompile>
     <ClCompile Include="src\kernel\cl\batchnorm_single_cl.c">
+      <Filter>Source Files\kernel\cl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\kernel\cl\bucketize_cl.c">
       <Filter>Source Files\kernel\cl</Filter>
     </ClCompile>
     <ClCompile Include="src\kernel\cl\cast_cl.c">
@@ -926,6 +962,9 @@
     <ClCompile Include="src\kernel\cl\gather_nd_cl.c">
       <Filter>Source Files\kernel\cl</Filter>
     </ClCompile>
+    <ClCompile Include="src\kernel\cl\globallppool_cl.c">
+      <Filter>Source Files\kernel\cl</Filter>
+    </ClCompile>
     <ClCompile Include="src\kernel\cl\group_normalization_cl.c">
       <Filter>Source Files\kernel\cl</Filter>
     </ClCompile>
@@ -962,6 +1001,9 @@
     <ClCompile Include="src\kernel\cl\logical_ops_cl.c">
       <Filter>Source Files\kernel\cl</Filter>
     </ClCompile>
+    <ClCompile Include="src\kernel\cl\lppool_cl.c">
+      <Filter>Source Files\kernel\cl</Filter>
+    </ClCompile>
     <ClCompile Include="src\kernel\cl\lstmunit_activation_cl.c">
       <Filter>Source Files\kernel\cl</Filter>
     </ClCompile>
@@ -972,6 +1014,9 @@
       <Filter>Source Files\kernel\cl</Filter>
     </ClCompile>
     <ClCompile Include="src\kernel\cl\maxpoolwithargmax_cl.c">
+      <Filter>Source Files\kernel\cl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\kernel\cl\maxunpool_cl.c">
       <Filter>Source Files\kernel\cl</Filter>
     </ClCompile>
     <ClCompile Include="src\kernel\cl\minimum_cl.c">
@@ -1031,7 +1076,13 @@
     <ClCompile Include="src\kernel\cl\resize_nearest_cl.c">
       <Filter>Source Files\kernel\cl</Filter>
     </ClCompile>
+    <ClCompile Include="src\kernel\cl\reversesequence_cl.c">
+      <Filter>Source Files\kernel\cl</Filter>
+    </ClCompile>
     <ClCompile Include="src\kernel\cl\roi_align_cl.c">
+      <Filter>Source Files\kernel\cl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\kernel\cl\scatter_elements_cl.c">
       <Filter>Source Files\kernel\cl</Filter>
     </ClCompile>
     <ClCompile Include="src\kernel\cl\scatter_nd_cl.c">
@@ -1076,6 +1127,9 @@
     <ClCompile Include="src\kernel\cpu\argmin_cpu.c">
       <Filter>Source Files\kernel\cpu</Filter>
     </ClCompile>
+    <ClCompile Include="src\kernel\cpu\avg_pool3d_cpu.c">
+      <Filter>Source Files\kernel\cpu</Filter>
+    </ClCompile>
     <ClCompile Include="src\kernel\cpu\axis_aligned_bbox_transform_cpu.c">
       <Filter>Source Files\kernel\cpu</Filter>
     </ClCompile>
@@ -1083,6 +1137,9 @@
       <Filter>Source Files\kernel\cpu</Filter>
     </ClCompile>
     <ClCompile Include="src\kernel\cpu\box_with_nms_limit_cpu.c">
+      <Filter>Source Files\kernel\cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\kernel\cpu\bucketize_cpu.c">
       <Filter>Source Files\kernel\cpu</Filter>
     </ClCompile>
     <ClCompile Include="src\kernel\cpu\cast_cpu.c">
@@ -1142,6 +1199,9 @@
     <ClCompile Include="src\kernel\cpu\generate_proposals_cpu.c">
       <Filter>Source Files\kernel\cpu</Filter>
     </ClCompile>
+    <ClCompile Include="src\kernel\cpu\globallppool_cpu.c">
+      <Filter>Source Files\kernel\cpu</Filter>
+    </ClCompile>
     <ClCompile Include="src\kernel\cpu\group_normalization_cpu.c">
       <Filter>Source Files\kernel\cpu</Filter>
     </ClCompile>
@@ -1181,6 +1241,9 @@
     <ClCompile Include="src\kernel\cpu\logical_ops_cpu.c">
       <Filter>Source Files\kernel\cpu</Filter>
     </ClCompile>
+    <ClCompile Include="src\kernel\cpu\lppool_cpu.c">
+      <Filter>Source Files\kernel\cpu</Filter>
+    </ClCompile>
     <ClCompile Include="src\kernel\cpu\lstmunit_activation_cpu.c">
       <Filter>Source Files\kernel\cpu</Filter>
     </ClCompile>
@@ -1191,6 +1254,9 @@
       <Filter>Source Files\kernel\cpu</Filter>
     </ClCompile>
     <ClCompile Include="src\kernel\cpu\maxpoolwithargmax_cpu.c">
+      <Filter>Source Files\kernel\cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\kernel\cpu\maxunpool_cpu.c">
       <Filter>Source Files\kernel\cpu</Filter>
     </ClCompile>
     <ClCompile Include="src\kernel\cpu\minimum_cpu.c">
@@ -1230,6 +1296,9 @@
       <Filter>Source Files\kernel\cpu</Filter>
     </ClCompile>
     <ClCompile Include="src\kernel\cpu\pre_process_yuv420_cpu.c">
+      <Filter>Source Files\kernel\cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\kernel\cpu\pre_process_yuv422_cpu.c">
       <Filter>Source Files\kernel\cpu</Filter>
     </ClCompile>
     <ClCompile Include="src\kernel\cpu\pre_process_yuv444_cpu.c">
@@ -1277,7 +1346,13 @@
     <ClCompile Include="src\kernel\cpu\resize_nearest_cpu.c">
       <Filter>Source Files\kernel\cpu</Filter>
     </ClCompile>
+    <ClCompile Include="src\kernel\cpu\reversesequence_cpu.c">
+      <Filter>Source Files\kernel\cpu</Filter>
+    </ClCompile>
     <ClCompile Include="src\kernel\cpu\roi_align_cpu.c">
+      <Filter>Source Files\kernel\cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\kernel\cpu\scatter_elements_cpu.c">
       <Filter>Source Files\kernel\cpu</Filter>
     </ClCompile>
     <ClCompile Include="src\kernel\cpu\scatter_nd_cpu.c">
@@ -1338,6 +1413,9 @@
       <Filter>Source Files\kernel\evis</Filter>
     </ClCompile>
     <ClCompile Include="src\kernel\evis\batchnorm_single_evis.c">
+      <Filter>Source Files\kernel\evis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\kernel\evis\bucketize_evis.c">
       <Filter>Source Files\kernel\evis</Filter>
     </ClCompile>
     <ClCompile Include="src\kernel\evis\cast_evis.c">
@@ -1469,6 +1547,9 @@
     <ClCompile Include="src\kernel\evis\pre_process_yuv420_evis.c">
       <Filter>Source Files\kernel\evis</Filter>
     </ClCompile>
+    <ClCompile Include="src\kernel\evis\pre_process_yuv422_evis.c">
+      <Filter>Source Files\kernel\evis</Filter>
+    </ClCompile>
     <ClCompile Include="src\kernel\evis\pre_process_yuv444_evis.c">
       <Filter>Source Files\kernel\evis</Filter>
     </ClCompile>
@@ -1556,7 +1637,10 @@
     <ClCompile Include="src\kernel\sp\batch_norm_sp.c">
       <Filter>Source Files\kernel\sp</Filter>
     </ClCompile>
-  <ClCompile Include="src\kernel\sp\eltwise_sp.c">
+    <ClCompile Include="src\kernel\sp\comparisons_sp.c">
+      <Filter>Source Files\kernel\sp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\kernel\sp\eltwise_sp.c">
       <Filter>Source Files\kernel\sp</Filter>
     </ClCompile>
     <ClCompile Include="src\kernel\sp\eltwise_unary_sp.c">
@@ -1580,10 +1664,16 @@
     <ClCompile Include="src\kernel\sp\l2_normalize_sp.c">
       <Filter>Source Files\kernel\sp</Filter>
     </ClCompile>
+    <ClCompile Include="src\kernel\sp\l2_normalize_z_direction_sp.c">
+      <Filter>Source Files\kernel\sp</Filter>
+    </ClCompile>
     <ClCompile Include="src\kernel\sp\layer_norm_sp.c">
       <Filter>Source Files\kernel\sp</Filter>
     </ClCompile>
     <ClCompile Include="src\kernel\sp\layer_norm_y_direction_sp.c">
+      <Filter>Source Files\kernel\sp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\kernel\sp\logical_sp.c">
       <Filter>Source Files\kernel\sp</Filter>
     </ClCompile>
     <ClCompile Include="src\kernel\sp\lstmunit_activation_sp.c">
@@ -1595,10 +1685,19 @@
     <ClCompile Include="src\kernel\sp\minimum_sp.c">
       <Filter>Source Files\kernel\sp</Filter>
     </ClCompile>
+    <ClCompile Include="src\kernel\sp\reduce_max_sp.c">
+      <Filter>Source Files\kernel\sp</Filter>
+    </ClCompile>
     <ClCompile Include="src\kernel\sp\reduce_mean_sp.c">
       <Filter>Source Files\kernel\sp</Filter>
     </ClCompile>
     <ClCompile Include="src\kernel\sp\softmax_sp.c">
+      <Filter>Source Files\kernel\sp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\kernel\sp\softmax_y_direction_sp.c">
+      <Filter>Source Files\kernel\sp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\kernel\sp\softmax_z_direction_sp.c">
       <Filter>Source Files\kernel\sp</Filter>
     </ClCompile>
     <ClCompile Include="src\kernel\vsi_nn_gpu.c">
@@ -1697,6 +1796,9 @@
     <ClCompile Include="src\ops\vsi_nn_op_argmaxmin.c">
       <Filter>Source Files\ops</Filter>
     </ClCompile>
+    <ClCompile Include="src\ops\vsi_nn_op_avg_pool3d.c">
+      <Filter>Source Files\ops</Filter>
+    </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_axis_aligned_bbox_transform.c">
       <Filter>Source Files\ops</Filter>
     </ClCompile>
@@ -1716,6 +1818,9 @@
       <Filter>Source Files\ops</Filter>
     </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_box_with_nms_limit.c">
+      <Filter>Source Files\ops</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ops\vsi_nn_op_bucketize.c">
       <Filter>Source Files\ops</Filter>
     </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_cast.c">
@@ -1835,6 +1940,9 @@
     <ClCompile Include="src\ops\vsi_nn_op_generate_proposals.c">
       <Filter>Source Files\ops</Filter>
     </ClCompile>
+    <ClCompile Include="src\ops\vsi_nn_op_globallppool.c">
+      <Filter>Source Files\ops</Filter>
+    </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_grouped_conv1d.c">
       <Filter>Source Files\ops</Filter>
     </ClCompile>
@@ -1910,6 +2018,9 @@
     <ClCompile Include="src\ops\vsi_nn_op_logical_ops.c">
       <Filter>Source Files\ops</Filter>
     </ClCompile>
+    <ClCompile Include="src\ops\vsi_nn_op_lppool.c">
+      <Filter>Source Files\ops</Filter>
+    </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_lrn.c">
       <Filter>Source Files\ops</Filter>
     </ClCompile>
@@ -1941,6 +2052,9 @@
       <Filter>Source Files\ops</Filter>
     </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_maxpoolwithargmax.c">
+      <Filter>Source Files\ops</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ops\vsi_nn_op_maxunpool.c">
       <Filter>Source Files\ops</Filter>
     </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_mod.c">
@@ -2001,6 +2115,9 @@
       <Filter>Source Files\ops</Filter>
     </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_pre_process_yuv420.c">
+      <Filter>Source Files\ops</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ops\vsi_nn_op_pre_process_yuv422.c">
       <Filter>Source Files\ops</Filter>
     </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_pre_process_yuv444.c">
@@ -2084,6 +2201,9 @@
     <ClCompile Include="src\ops\vsi_nn_op_reverse.c">
       <Filter>Source Files\ops</Filter>
     </ClCompile>
+    <ClCompile Include="src\ops\vsi_nn_op_reversesequence.c">
+      <Filter>Source Files\ops</Filter>
+    </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_rnn.c">
       <Filter>Source Files\ops</Filter>
     </ClCompile>
@@ -2100,6 +2220,9 @@
       <Filter>Source Files\ops</Filter>
     </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_scale.c">
+      <Filter>Source Files\ops</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ops\vsi_nn_op_scatter_elements.c">
       <Filter>Source Files\ops</Filter>
     </ClCompile>
     <ClCompile Include="src\ops\vsi_nn_op_scatter_nd.c">
@@ -2210,9 +2333,6 @@
     <ClCompile Include="src\post\vsi_nn_post_fasterrcnn.c">
       <Filter>Source Files\post</Filter>
     </ClCompile>
-    <ClCompile Include="src\pycc\vsi_pycc_interface.c">
-      <Filter>Source Files\pycc</Filter>
-    </ClCompile>
     <ClCompile Include="src\quantization\vsi_nn_asymmetric_affine.c">
       <Filter>Source Files\quantization</Filter>
     </ClCompile>
@@ -2264,9 +2384,6 @@
     <ClCompile Include="src\utils\vsi_nn_util.c">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
-    <ClCompile Include="src\utils\vsi_nn_vdata.c">
-      <Filter>Source Files\utils</Filter>
-    </ClCompile>
     <ClCompile Include="src\vsi_nn_client_op.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -2312,7 +2429,7 @@
     <ClCompile Include="src\vsi_nn_version.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    </ItemGroup>
+  </ItemGroup>
   <ItemGroup>
     <None Include="include\custom\custom_node_type.def">
       <Filter>Header Files\custom</Filter>

@@ -53,6 +53,9 @@ typedef enum
     UNARY_RCP,
     UNARY_SIGN,
     UNARY_SOFTSIGN,
+    UNARY_ATAN,
+    UNARY_ATANH,
+    UNARY_ACOSH,
 } unary_type_e;
 
 
@@ -158,9 +161,24 @@ static float sign_eval(float x)
     return x > 0 ? 1.0f : x < 0 ? -1.0f : 0;
 }
 
+static float atan_eval(float x)
+{
+    return atanf(x);
+}
+
 static float softsign_eval(float x)
 {
     return x / (1.0f + vsi_abs(x));
+}
+
+static float atanh_eval(float x)
+{
+    return (log_eval(1 + x) - log_eval(1 - x)) / 2;
+}
+
+static float acosh_eval(float x)
+{
+    return (log_eval(x + (float)sqrt(x * x - 1)));
 }
 
 DEF_KERNEL_EXECUTOR(_eltwise_unary_exec)
@@ -253,6 +271,15 @@ DEF_KERNEL_EXECUTOR(_eltwise_unary_exec)
             break;
         case UNARY_SOFTSIGN:
             data = softsign_eval(data);
+            break;
+        case UNARY_ATAN:
+            data = atan_eval(data);
+            break;
+        case UNARY_ATANH:
+            data = atanh_eval(data);
+            break;
+        case UNARY_ACOSH:
+            data = acosh_eval(data);
             break;
         default:
             break;
@@ -391,3 +418,6 @@ REGISTER_ELTWISE_UNARY_BACKEND_CPU( celu,         UNARY_CELU )
 REGISTER_ELTWISE_UNARY_BACKEND_CPU( rcp,          UNARY_RCP )
 REGISTER_ELTWISE_UNARY_BACKEND_CPU( sign,         UNARY_SIGN )
 REGISTER_ELTWISE_UNARY_BACKEND_CPU( softsign,     UNARY_SOFTSIGN )
+REGISTER_ELTWISE_UNARY_BACKEND_CPU( atan,         UNARY_ATAN )
+REGISTER_ELTWISE_UNARY_BACKEND_CPU( atanh,        UNARY_ATANH )
+REGISTER_ELTWISE_UNARY_BACKEND_CPU( acosh,        UNARY_ACOSH )
