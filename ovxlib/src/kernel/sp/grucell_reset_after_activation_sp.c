@@ -53,6 +53,7 @@ vsi_nn_kernel_node_t vsi_nn_sp_r_times_h1_plus_h0_act_node
     vx_tensor inputs_tensor[3] = {NULL};
     vx_tensor outputs_tensor[1] = {NULL};
     vx_node node = NULL;
+    int32_t max_vector_depth = graph->ctx->config.sp_vector_depth;
 
     vsi_nn_spinst_t *spinst = NULL;
     vsi_nn_spinst_inst_param sp_insts_param[4];
@@ -61,7 +62,7 @@ vsi_nn_kernel_node_t vsi_nn_sp_r_times_h1_plus_h0_act_node
     vsi_status status = VSI_FAILURE;
 
     memset(sp_insts_param, 0, sizeof(vsi_nn_spinst_inst_param) * spInstsNum);
-    memset(&attr, 0, sizeof(vsi_nn_spinst_attr_t));
+    vsi_nn_init_spinst_attr(&attr);
 
     /* loop inst0: r2 = in * r3 || r5 = r2 + r4 || r10 = r9 */
     status  = vsi_nn_sp_mul(&sp_insts_param[0], VSI_NN_SP_SRIN, VSI_NN_SP_SR3, VSI_NN_SP_SR2);
@@ -88,6 +89,9 @@ vsi_nn_kernel_node_t vsi_nn_sp_r_times_h1_plus_h0_act_node
     attr.ignored_leading_v11_rd = 0;
     attr.ignored_leading_v12_wr = 4;
     attr.v12_reset_at_start = VX_SP_ATTRIBUTE_V_RESET_AT_START_RESET;
+
+    attr.split_axis = VSI_SP_ATTR_SPLIT_ON_AXIS_XYZ;
+    attr.split_max_vector_depth = max_vector_depth;
 
     VSI_NN_SP_ATTR_SET_CONST_TO_SR3(attr, 1.0f);
 

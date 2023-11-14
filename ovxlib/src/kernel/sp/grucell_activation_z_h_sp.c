@@ -71,6 +71,7 @@ vsi_nn_kernel_node_t vsi_nn_sp_grucell_activation_z_h_node
     vx_tensor inputs_tensor[3] = {NULL};
     vx_tensor outputs_tensor[1] = {NULL};
     vx_node node = NULL;
+    int32_t max_vector_depth = graph->ctx->config.sp_vector_depth;
 
     vsi_nn_spinst_t *spinst = NULL;
     vsi_nn_spinst_inst_param sp_insts_param[3];
@@ -81,7 +82,7 @@ vsi_nn_kernel_node_t vsi_nn_sp_grucell_activation_z_h_node
     vsi_status status = VSI_FAILURE;
 
     memset(sp_insts_param, 0, sizeof(vsi_nn_spinst_inst_param) * spInstsNum);
-    memset(&attr, 0, sizeof(vsi_nn_spinst_attr_t));
+    vsi_nn_init_spinst_attr(&attr);
 
     /* loop inst0: r1 = in * r3 || r2 = r1 - v12 || r5 = v12 */
     status  = vsi_nn_sp_mul(&sp_insts_param[0], VSI_NN_SP_SRIN, VSI_NN_SP_SR3, VSI_NN_SP_SR1);
@@ -104,6 +105,9 @@ vsi_nn_kernel_node_t vsi_nn_sp_grucell_activation_z_h_node
     attr.ignored_leading_outputs = 4;
     attr.ignored_leading_v11_rd = 2;
     attr.ignored_leading_v12_rd = 1;
+
+    attr.split_axis = VSI_SP_ATTR_SPLIT_ON_AXIS_XYZ;
+    attr.split_max_vector_depth = max_vector_depth;
 
     spinst = vsi_nn_create_spinst(graph);
     CHECK_PTR_FAIL_GOTO( spinst, "Create spInst fail.", final );

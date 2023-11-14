@@ -35,12 +35,12 @@
 
 static vsi_nn_spinst_t * _create_spinst
     (
-    vsi_nn_graph_t       * graph
+    vx_context      context
     )
 {
     vsi_nn_spinst_t * spinst = NULL;
 
-    if ( NULL == graph || NULL == graph->g )
+    if ( NULL == context  )
     {
         return spinst;
     }
@@ -50,7 +50,7 @@ static vsi_nn_spinst_t * _create_spinst
     if ( NULL != spinst )
     {
         memset( spinst, 0, sizeof( vsi_nn_spinst_t ) );
-        spinst->sp = vxCreateSPINST(graph->ctx->c);
+        spinst->sp = vxCreateSPINST(context);
         if ( NULL == spinst->sp )
         {
             VSILOGE( "Create vx spinst fail." );
@@ -67,8 +67,21 @@ vsi_nn_spinst_t * vsi_nn_create_spinst
     vsi_nn_graph_t       * graph
     )
 {
-    return _create_spinst(graph);
+    if ( NULL == graph )
+    {
+        return NULL;
+    }
+
+    return _create_spinst(graph->ctx->c);
 } /* vsi_nn_create_spinst() */
+
+vsi_nn_spinst_t * vsi_nn_create_spinst_by_context
+    (
+    vx_context      context
+    )
+{
+    return _create_spinst(context);
+} /* vsi_nn_create_spinst_by_context() */
 
 void vsi_nn_release_spinst
     (
@@ -162,6 +175,8 @@ vsi_status vsi_nn_set_spinst_attr
         attrs.sum_engine_num_ch_minus_one);
     status |= vxSetAttributeToSPINST(spinst->sp, VSI_NN_SP_ATTRIBUTE_SUM_ENGINE_2D_ACCUM_STORAGE,
         attrs.sum_engine_2d_accum_storeage);
+    status |= vxSetAttributeToSPINST(spinst->sp, VSI_NN_SP_ATTRIBUTE_NUM_OF_ELEMENTS_PER_LOOP_PER_INPUT,
+        attrs.num_of_elements_per_loop_per_input);
 
     constant_data[0] = *(uint32_t *)&attrs.init_r3;
     constant_data[1] = *(uint32_t *)&attrs.init_r4;
@@ -246,5 +261,16 @@ vsi_status vsi_nn_add_spinst_insts
 
     return status;
 } /* vsi_nn_add_spinst_insts() */
+
+void vsi_nn_init_spinst_attr
+    (
+    vsi_nn_spinst_attr_t * attrs
+    )
+{
+    memset(attrs, 0, sizeof(vsi_nn_spinst_attr_t));
+
+    /*default per loop to process one input or output pixel*/
+    attrs->num_of_elements_per_loop_per_input = 1;
+} /* vsi_nn_init_spinst_attr() */
 
 #endif
