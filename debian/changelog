@@ -1,3 +1,12 @@
+nn-imx (1.3.0+git20220724.1b54f5a-0+toradex2) bookworm; urgency=medium
+
+  * debian/control: fix the -dev packages sections.
+  * debian/libovxlib1.symbols: add Build-Depends-Package meta-information.
+  * debian/toradex-ci.yml: build against bookworm and don't suffix the
+    version.
+
+ -- Carlos Henrique Lima Melara <carlos.melara@toradex.com>  Thu, 16 Nov 2023 12:34:12 -0300
+
 nn-imx (1.3.0+git20220724.1b54f5a-0+toradex1) bookworm; urgency=medium
 
   * Initial release.
